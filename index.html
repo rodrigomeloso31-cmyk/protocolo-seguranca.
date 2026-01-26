@@ -1,3 +1,5 @@
+ { font-size: 13px; height: 100px; overflow: hidden; margin-bottom: 10px; line-height: 1.4; }
+     
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -32,18 +34,16 @@
               status = document.getElementById('status'),
               beep = document.getElementById('beep');
 
-        // O som toca assim que a página carrega, pois o clique no "Atender" já deu permissão ao iOS
         const timer = setInterval(() => {
             if (progress < 100) {
                 progress++;
                 bar.style.width = progress + "%";
                 
-                // Toca um bipe curto a cada 20% de progresso
                 if (progress % 20 === 0) {
                     log.innerHTML += msgs[i] + "<br>";
                     i++;
                     beep.currentTime = 0;
-                    beep.play().catch(() => console.log("iOS barrou o som automático"));
+                    beep.play().catch(() => console.log("Aguardando interação"));
                 }
             } else {
                 clearInterval(timer);
