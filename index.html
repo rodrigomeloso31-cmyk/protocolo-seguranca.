@@ -6,52 +6,97 @@
     <title>Protocolo de Segurança</title>
     <style>
         * { box-sizing: border-box; }
-        body { margin: 0; background: #000; color: #00ff00; font-family: monospace; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; width: 100vw; overflow: hidden; }
-        .terminal { width: 90%; max-width: 350px; padding: 25px; border: 2px solid #00ff00; background: rgba(0, 255, 0, 0.02); border-radius: 8px; box-shadow: 0 0 20px rgba(0,255,0,0.2); }
-        .bar-bg { width: 100%; background: #111; height: 16px; border: 1px solid #00ff00; margin: 20px 0; overflow: hidden; }
+        body { 
+            margin: 0; 
+            background: #000; 
+            color: #00ff00; 
+            font-family: monospace; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            width: 100vw; 
+            overflow: hidden;
+            padding: 10px;
+        }
+        .terminal { 
+            width: 100%; 
+            height: 95vh; /* Ocupa quase toda a altura da tela */
+            max-width: 450px; 
+            padding: 30px 20px; 
+            border: 3px solid #00ff00; 
+            background: rgba(0, 255, 0, 0.03); 
+            border-radius: 15px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Distribui os itens do topo ao fundo */
+            box-shadow: inset 0 0 20px rgba(0,255,0,0.2);
+        }
+        .header-text {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        .bar-bg { width: 100%; background: #111; height: 20px; border: 1px solid #00ff00; margin: 20px 0; position: relative; }
         .bar-fill { width: 0%; height: 100%; background: #00ff00; transition: width 0.1s; }
-        .log { font-size: 12px; height: 90px; overflow: hidden; margin-bottom: 10px; text-align: left; color: #00cc00; }
-        #status { text-align: center; font-weight: bold; font-size: 15px; letter-spacing: 1px; }
-        .btn-ready { display: none; width: 100%; background: #00ff00; color: #000; border: none; padding: 18px; font-weight: 900; border-radius: 5px; text-decoration: none; text-align: center; font-size: 16px; margin-top: 15px; text-transform: uppercase; box-shadow: 0 4px 10px rgba(0,255,0,0.4); }
+        .log { 
+            font-size: 14px; 
+            flex-grow: 1; /* Faz o log ocupar o espaço do meio */
+            overflow: hidden; 
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        #status { text-align: center; font-size: 16px; margin-bottom: 10px; }
+        .btn-ready { 
+            display: none; 
+            width: 100%; 
+            background: #00ff00; 
+            color: #000; 
+            border: none; 
+            padding: 22px; 
+            font-weight: 900; 
+            border-radius: 10px; 
+            text-decoration: none; 
+            text-align: center; 
+            font-size: 18px; 
+            text-transform: uppercase;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 255, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+        }
     </style>
 </head>
 <body>
     <audio id="beep" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" preload="auto"></audio>
 
     <div class="terminal">
-        <div id="status">PROTOCOLO DE SEGURANÇA</div>
-        <div class="bar-bg"><div id="bar" class="bar-fill"></div></div>
-        <div id="log" class="log"></div>
-        <a href="https://hotm.io/Protgoat" id="btn" class="btn-ready">LIBERAR ACESSO</a>
+        <div class="header-text">PROTOCOLO DE SEGURANÇA</div>
+        
+        <div class="log" id="log"></div>
+
+        <div>
+            <div id="status">ANALISANDO SISTEMA...</div>
+            <div class="bar-bg"><div id="bar" class="bar-fill"></div></div>
+            <a href="https://hotm.io/Protgoat" id="btn" class="btn-ready">LIBERAR ACESSO</a>
+        </div>
     </div>
 
     <script>
-        const msgs = ["> Iniciando Protocolo...", "> Criptografia de Ponta...", "> Verificando Integridade...", "> Autenticando Usuário...", "> ACESSO GARANTIDO!"];
+        const msgs = [
+            "> Conectando à rede segura...",
+            "> Criptografia militar ativa...",
+            "> Verificando integridade dos dados...",
+            "> Bypass de firewall concluído...",
+            "> Localizando vaga disponível...",
+            "> Gerando token de acesso único...",
+            "> PROTOCOLO FINALIZADO!"
+        ];
         let i = 0, progress = 0;
         const log = document.getElementById('log'), bar = document.getElementById('bar'), btn = document.getElementById('btn'), status = document.getElementById('status'), beep = document.getElementById('beep');
 
-        // Função para tocar som no iOS
         function playSound() {
             beep.currentTime = 0;
-            beep.play().catch(e => console.log("Aguardando interação do usuário"));
-        }
-
-        const timer = setInterval(() => {
-            if (progress < 100) {
-                progress++;
-                bar.style.width = progress + "%";
-                if (progress % 20 === 0) {
-                    log.innerHTML += msgs[i] + "<br>";
-                    i++;
-                    playSound(); // Tenta tocar o som a cada etapa
-                }
-            } else {
-                clearInterval(timer);
-                status.innerText = "VERIFICAÇÃO CONCLUÍDA";
-                btn.style.display = "block";
-                playSound(); // Som final
-            }
-        }, 70);
-    </script>
-</body>
-</html>
