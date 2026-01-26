@@ -1,18 +1,18 @@
- { font-size: 13px; height: 100px; overflow: hidden; margin-bottom: 10px; line-height: 1.4; }
-     
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verificando Acesso...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Segurança Ativa</title>
     <style>
-        body { margin: 0; background: #000; color: #00ff00; font-family: monospace; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
-        .terminal { width: 90%; max-width: 400px; padding: 20px; border: 1px solid #00ff00; box-shadow: 0 0 15px #00ff0033; }
-        .bar-bg { width: 100%; background: #111; height: 12px; border: 1px solid #00ff00; margin: 20px 0; border-radius: 4px; }
+        * { box-sizing: border-box; }
+        body { margin: 0; background: #000; color: #00ff00; font-family: monospace; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; width: 100vw; overflow: hidden; }
+        .terminal { width: 90%; max-width: 350px; padding: 20px; border: 2px solid #00ff00; background: rgba(0, 255, 0, 0.05); border-radius: 10px; }
+        .bar-bg { width: 100%; background: #111; height: 15px; border: 1px solid #00ff00; margin: 20px 0; position: relative; }
         .bar-fill { width: 0%; height: 100%; background: #00ff00; transition: width 0.1s; }
-        .log { font-size: 13px; height: 100px; overflow: hidden; margin-bottom: 10px; line-height: 1.4; }
-        .btn-ready { display: none; width: 100%; background: #00ff00; color: #000; border: none; padding: 15px; font-weight: bold; border-radius: 5px; text-decoration: none; text-align: center; font-size: 16px; margin-top: 10px; box-sizing: border-box; }
+        .log { font-size: 12px; height: 80px; overflow: hidden; margin-bottom: 10px; text-align: left; }
+        #status { text-align: center; font-weight: bold; font-size: 14px; }
+        .btn-ready { display: none; width: 100%; background: #00ff00; color: #000; border: none; padding: 18px; font-weight: 900; border-radius: 5px; text-decoration: none; text-align: center; font-size: 16px; margin-top: 15px; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -21,36 +21,31 @@
     <div class="terminal">
         <div id="log" class="log"></div>
         <div class="bar-bg"><div id="bar" class="bar-fill"></div></div>
-        <div id="status">INICIANDO PROTOCOLO...</div>
-        <a href="https://hotm.io/Protgoat" id="btn" class="btn-ready">LIBERAR MEU ACESSO AGORA</a>
+        <div id="status">INICIALIZANDO...</div>
+        <a href="https://hotm.io/Protgoat" id="btn" class="btn-ready">ACESSAR AGORA</a>
     </div>
 
     <script>
-        const msgs = ["> Conectando servidor...", "> Criptografia SSL ativa...", "> Verificando vaga exclusiva...", "> Validando Token...", "> ACESSO CONCEDIDO!"];
+        const msgs = ["> Bypass Firewall...", "> Encriptando IP...", "> Verificando Acesso...", "> Token Validado!", "> CONECTADO!"];
         let i = 0, progress = 0;
-        const log = document.getElementById('log'), 
-              bar = document.getElementById('bar'), 
-              btn = document.getElementById('btn'), 
-              status = document.getElementById('status'),
-              beep = document.getElementById('beep');
+        const log = document.getElementById('log'), bar = document.getElementById('bar'), btn = document.getElementById('btn'), status = document.getElementById('status'), beep = document.getElementById('beep');
 
         const timer = setInterval(() => {
             if (progress < 100) {
                 progress++;
                 bar.style.width = progress + "%";
-                
                 if (progress % 20 === 0) {
                     log.innerHTML += msgs[i] + "<br>";
                     i++;
                     beep.currentTime = 0;
-                    beep.play().catch(() => console.log("Aguardando interação"));
+                    beep.play().catch(() => {});
                 }
             } else {
                 clearInterval(timer);
-                status.innerText = "SISTEMA PRONTO!";
+                status.innerText = "ACESSO LIBERADO";
                 btn.style.display = "block";
             }
-        }, 50);
+        }, 60);
     </script>
 </body>
 </html>
