@@ -3,32 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Segurança Ativa</title>
+    <title>Protocolo de Segurança</title>
     <style>
         * { box-sizing: border-box; }
         body { margin: 0; background: #000; color: #00ff00; font-family: monospace; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; width: 100vw; overflow: hidden; }
-        .terminal { width: 90%; max-width: 350px; padding: 20px; border: 2px solid #00ff00; background: rgba(0, 255, 0, 0.05); border-radius: 10px; }
-        .bar-bg { width: 100%; background: #111; height: 15px; border: 1px solid #00ff00; margin: 20px 0; position: relative; }
+        .terminal { width: 90%; max-width: 350px; padding: 25px; border: 2px solid #00ff00; background: rgba(0, 255, 0, 0.02); border-radius: 8px; box-shadow: 0 0 20px rgba(0,255,0,0.2); }
+        .bar-bg { width: 100%; background: #111; height: 16px; border: 1px solid #00ff00; margin: 20px 0; overflow: hidden; }
         .bar-fill { width: 0%; height: 100%; background: #00ff00; transition: width 0.1s; }
-        .log { font-size: 12px; height: 80px; overflow: hidden; margin-bottom: 10px; text-align: left; }
-        #status { text-align: center; font-weight: bold; font-size: 14px; }
-        .btn-ready { display: none; width: 100%; background: #00ff00; color: #000; border: none; padding: 18px; font-weight: 900; border-radius: 5px; text-decoration: none; text-align: center; font-size: 16px; margin-top: 15px; text-transform: uppercase; }
+        .log { font-size: 12px; height: 90px; overflow: hidden; margin-bottom: 10px; text-align: left; color: #00cc00; }
+        #status { text-align: center; font-weight: bold; font-size: 15px; letter-spacing: 1px; }
+        .btn-ready { display: none; width: 100%; background: #00ff00; color: #000; border: none; padding: 18px; font-weight: 900; border-radius: 5px; text-decoration: none; text-align: center; font-size: 16px; margin-top: 15px; text-transform: uppercase; box-shadow: 0 4px 10px rgba(0,255,0,0.4); }
     </style>
 </head>
 <body>
-    <audio id="beep" src="https://www.soundjay.com/communication/sounds/digital-display-01.mp3" preload="auto"></audio>
+    <audio id="beep" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" preload="auto"></audio>
 
     <div class="terminal">
-        <div id="log" class="log"></div>
+        <div id="status">PROTOCOLO DE SEGURANÇA</div>
         <div class="bar-bg"><div id="bar" class="bar-fill"></div></div>
-        <div id="status">INICIALIZANDO...</div>
-        <a href="https://hotm.io/Protgoat" id="btn" class="btn-ready">ACESSAR AGORA</a>
+        <div id="log" class="log"></div>
+        <a href="https://hotm.io/Protgoat" id="btn" class="btn-ready">LIBERAR ACESSO</a>
     </div>
 
     <script>
-        const msgs = ["> Bypass Firewall...", "> Encriptando IP...", "> Verificando Acesso...", "> Token Validado!", "> CONECTADO!"];
+        const msgs = ["> Iniciando Protocolo...", "> Criptografia de Ponta...", "> Verificando Integridade...", "> Autenticando Usuário...", "> ACESSO GARANTIDO!"];
         let i = 0, progress = 0;
         const log = document.getElementById('log'), bar = document.getElementById('bar'), btn = document.getElementById('btn'), status = document.getElementById('status'), beep = document.getElementById('beep');
+
+        // Função para tocar som no iOS
+        function playSound() {
+            beep.currentTime = 0;
+            beep.play().catch(e => console.log("Aguardando interação do usuário"));
+        }
 
         const timer = setInterval(() => {
             if (progress < 100) {
@@ -37,15 +43,15 @@
                 if (progress % 20 === 0) {
                     log.innerHTML += msgs[i] + "<br>";
                     i++;
-                    beep.currentTime = 0;
-                    beep.play().catch(() => {});
+                    playSound(); // Tenta tocar o som a cada etapa
                 }
             } else {
                 clearInterval(timer);
-                status.innerText = "ACESSO LIBERADO";
+                status.innerText = "VERIFICAÇÃO CONCLUÍDA";
                 btn.style.display = "block";
+                playSound(); // Som final
             }
-        }, 60);
+        }, 70);
     </script>
 </body>
 </html>
