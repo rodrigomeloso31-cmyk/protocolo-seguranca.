@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificando Acesso...</title>
+    <style>
+        body { margin: 0; background: #000; color: #00ff00; font-family: monospace; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        .terminal { width: 90%; max-width: 400px; padding: 20px; border: 1px solid #00ff00; box-shadow: 0 0 15px #00ff0033; }
+        .bar-bg { width: 100%; background: #111; height: 12px; border: 1px solid #00ff00; margin: 20px 0; border-radius: 4px; }
+        .bar-fill { width: 0%; height: 100%; background: #00ff00; transition: width 0.1s; }
+        .log { font-size: 13px; height: 100px; overflow: hidden; margin-bottom: 10px; }
+        .btn-ready { display: none; width: 100%; background: #00ff00; color: #000; border: none; padding: 15px; font-weight: bold; border-radius: 5px; text-decoration: none; text-align: center; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div id="log" class="log"></div>
+        <div class="bar-bg"><div id="bar" class="bar-fill"></div></div>
+        <div id="status">INICIANDO PROTOCOLO...</div>
+        <a href="https://hotm.io/Protgoat" id="btn" class="btn-ready">LIBERAR MEU ACESSO AGORA</a>
+    </div>
+
+    <script>
+        const msgs = ["> Conectando servidor...", "> Criptografia SSL ativa...", "> Verificando vaga exclusiva...", "> Validando Token...", "> ACESSO CONCEDIDO!"];
+        let i = 0, progress = 0;
+        const log = document.getElementById('log'), bar = document.getElementById('bar'), btn = document.getElementById('btn'), status = document.getElementById('status');
+
+        const timer = setInterval(() => {
+            if (progress < 100) {
+                progress++;
+                bar.style.width = progress + "%";
+                if (progress % 20 === 0) {
+                    log.innerHTML += msgs[i] + "<br>";
+                    i++;
+                }
+            } else {
+                clearInterval(timer);
+                status.innerText = "SISTEMA PRONTO!";
+                btn.style.display = "block";
+            }
+        }, 50);
+    </script>
+</body>
+</html>
