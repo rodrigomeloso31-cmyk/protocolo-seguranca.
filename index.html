@@ -3,45 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Protocolo Goat</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
-body{background:#000;color:#fff;display:flex;flex-direction:column;align-items:center;overflow-x:hidden}
-.h{text-align:center;padding:15px;width:100%}
-.l{width:60px;height:60px;border-radius:50%;border:2px solid red;box-shadow:0 0 15px red;object-fit:cover}
-.c{width:95%;max-width:400px;text-align:center}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #000; color: #fff; font-family: sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; width: 100vw; overflow-x: hidden; }
+    
+    /* Header com Logo um pouco maior */
+    .header { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; padding: 20px; border-bottom: 1px solid #f00; }
+    .logo { width: 55px; height: 55px; border-radius: 50%; border: 2px solid #f00; box-shadow: 0 0 10px #f00; }
+    
+    /* Vídeo em Widescreen (16:9) mais preenchido */
+    .v-c { width: 95%; max-width: 450px; aspect-ratio: 16 / 9; margin: 20px 0; border: 2px solid #f00; border-radius: 8px; overflow: hidden; background: #000; box-shadow: 0 0 15px rgba(255,0,0,0.3); }
+    .v-c iframe { width: 100%; height: 100%; border: none; }
 
-/* Container do Vídeo Vertical */
-.v-box{width:100%;aspect-ratio:9/16;max-height:500px;border:2px solid #333;border-radius:20px;overflow:hidden;margin-bottom:20px;position:relative;background:#000}
-.v-box iframe{position:absolute;top:0;left:0;width:100%;height:100%}
+    .box { width: 90%; max-width: 400px; padding: 15px; background: rgba(255,0,0,0.08); border-left: 4px solid #f00; margin-bottom: 10px; border-radius: 4px; }
+    
+    /* Botão com Borda Fluorescente Neon e Pulse */
+    .btn { 
+        background: #f00; 
+        color: #fff; 
+        padding: 22px; 
+        font-weight: 900; 
+        border-radius: 12px; 
+        width: 90%; 
+        max-width: 400px; 
+        border: 2px solid #fff; /* Borda de contraste para o neon */
+        text-transform: uppercase; 
+        margin: 25px 0; 
+        cursor: pointer; 
+        font-size: 1.4rem; 
+        letter-spacing: 1px;
+        animation: neon-pulse 1.5s infinite;
+        outline: none;
+    }
 
-/* Boxes Azul Neon Boleados */
-.s{width:100%;padding:18px;border:2.5px solid #00f2ff;border-radius:30px;margin-bottom:15px;display:flex;align-items:center;gap:12px;box-shadow:0 0 15px #00f2ff;animation:pB 2s infinite}
-@keyframes pB{0%,100%{box-shadow:0 0 5px #00f2ff}50%{box-shadow:0 0 20px #00f2ff}}
-.s h2{color:#00f2ff;font-size:14px;text-transform:uppercase;text-shadow:0 0 10px #00f2ff}
-.s p{font-size:11px;opacity:0.9}.icon{font-size:22px}
+    @keyframes neon-pulse {
+        0% { box-shadow: 0 0 10px #f00, 0 0 20px #f00, inset 0 0 10px #f00; transform: scale(1); }
+        50% { box-shadow: 0 0 25px #f00, 0 0 50px #f00, inset 0 0 20px #f00; transform: scale(1.03); }
+        100% { box-shadow: 0 0 10px #f00, 0 0 20px #f00, inset 0 0 10px #f00; transform: scale(1); }
+    }
 
-/* Botão Vermelho Neon */
-.btn{width:100%;background:none;color:#ff0000;padding:22px;font-size:16px;font-weight:900;border-radius:50px;border:3px solid #ff0000;text-transform:uppercase;box-shadow:0 0 15px #ff0000;animation:pR 1.5s infinite;margin-top:10px}
-@keyframes pR{0%,100%{transform:scale(1)}50%{transform:scale(1.05);box-shadow:0 0 25px #ff0000}}
+    /* Animações de Transição */
+    #ld { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    .bar { width: 75%; height: 6px; background: #222; margin-top: 20px; border-radius: 10px; border: 1px solid #f00; }
+    .prog { width: 0%; height: 100%; background: #f00; animation: l 3s forwards; }
+    @keyframes l { to { width: 100%; } }
 
-#o{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99;flex-direction:column;align-items:center;justify-content:center}
-.b{width:70%;height:4px;background:#111;border-radius:10px;margin-top:20px;overflow:hidden;border:1px solid red}
-.g{width:0;height:100%;background:red;animation:load 3s forwards}@keyframes load{to{width:100%}}
+    #proc { display: none; color: #39ff14; font-family: monospace; font-size: 1.3rem; animation: b 0.5s infinite; text-shadow: 0 0 10px #39ff14; }
+    @keyframes b { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+    #final { display: none; color: #fff; font-size: 1.6rem; font-weight: bold; text-shadow: 0 0 15px #f00, 0 0 30px #f00; padding: 20px; }
+    .red { color: #f00; }
 </style>
 </head>
 <body>
-<div id="o"><div style="color:red;font-size:12px">CONFIGURANDO PROTOCOLO...<div class="b"><div class="g"></div></div></div></div>
-<div class="h"><img src="https://imgur.com/PoxJsyD.png" class="l"><div style="font-size:22px;font-weight:700;margin-top:8px">Protocolo <span style="color:red">Goat</span></div></div>
-<div class="c">
-    <div class="v-box">
-        <iframe src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&rel=0&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+    <div id="ld">
+        <div id="s1">
+            <div style="color:#f00; font-family:monospace; letter-spacing: 3px; font-size: 1.2rem;">CRIPTOGRAFANDO...</div>
+            <div class="bar"><div class="prog"></div></div>
+        </div>
+        <div id="proc">PROCESSANDO DADOS...</div>
+        <div id="final"><span id="un"></span> FALTA POUCO PARA SER UM <span class="red">GOAT</span></div>
     </div>
-    <div class="s"><span class="icon">🛡️</span><div><h2>Acelerador Visual</h2><p>Domine a retenção com estruturas de alto impacto.</p></div></div>
-    <div class="s"><span class="icon">🗝️</span><div><h2 style="color:#fff; text-shadow:none;">Domínio da I.A</h2><p>Use prompts estratégicos para baixar seu CPA.</p></div></div>
-    <button class="btn" onclick="start()">LIBERAR ACESSO AO PROTOCOLO</button>
-</div>
-<script>
-function start(){document.getElementById('o').style.display='flex';setTimeout(()=>{window.location.assign("https://pay.hotmart.com/L103950840Q")},3500)}
-</script>
+
+    <div class="header">
+        <img src="https://imgur.com/PoxJsyD.png" class="logo">
+        <h1 style="font-size: 1.5rem;">Protocolo <span class="red">Goat</span></h1>
+    </div>
+
+    <div class="v-c">
+        <iframe src="https://www.youtube.com/embed/NTn7iAHoxNU?autoplay=1&loop=1&playlist=NTn7iAHoxNU&controls=0&mute=0"></iframe>
+    </div>
+
+    <div class="box">
+        <h2 style="font-size:0.9rem; color:#f00; letter-spacing:1px;">ACELERADOR VISUAL</h2>
+        <p style="font-size:0.8rem; color:#ccc; margin-top:5px;">Experiências que sequestram a atenção.</p>
+    </div>
+
+    <div class="box">
+        <h2 style="font-size:0.9rem; color:#f00; letter-spacing:1px;">DOMÍNIO DA I.A</h2>
+        <p style="font-size:0.8rem; color:#ccc; margin-top:5px;">O segredo para baixar seu CPA.</p>
+    </div>
+
+    <button class="btn" onclick="ac()">ACESSO AO PROTOCOLO</button>
+
+    <script>
+        function ac(){
+            const p = new URLSearchParams(window.location.search);
+            let n = p.get('nome');
+            if(n) document.getElementById('un').innerText = n.toUpperCase() + ",";
+
+            document.getElementById('ld').style.display = 'flex';
+            
+            setTimeout(() => {
+                document.getElementById('s1').style.display = 'none';
+                document.getElementById('proc').style.display = 'block';
+                
+                setTimeout(() => {
+                    document.getElementById('proc').style.display = 'none';
+                    document.getElementById('final').style.display = 'block';
+                    
+                    setTimeout(() => {
+                        window.location.href = "https://pay.hotmart.com/L103950840Q";
+                    }, 2500);
+                }, 2000);
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
