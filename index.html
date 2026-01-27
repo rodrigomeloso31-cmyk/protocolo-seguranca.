@@ -6,7 +6,7 @@
 <title>Protocolo GOAT | Sistema Ativado</title>
 
 <style>
-/* BASE & ESTÉTICA CYBER */
+/* BASE & ESTÉTICA CYBERPUNK */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
     background: #000;
@@ -32,7 +32,7 @@ body {
     text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000;
 }
 
-/* VIDEO BOX */
+/* VIDEO BOX (COM AUTOPLAY) */
 .video-box {
     border: 4px solid #00ffff;
     border-radius: 25px;
@@ -131,11 +131,11 @@ body {
 
 <div class="container">
     <div class="video-box">
-        <iframe src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&mute=1" frameborder="0" allowfullscreen></iframe>
+        <iframe id="goatVideo" src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&mute=1&controls=0&rel=0&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 
     <button class="module-btn" onclick="scrollToBuy()">💻 01. ACESSO_AO_SISTEMA</button>
-    <p class="desc-text">Quebra de padrões estéticos iniciais.</p>
+    <p class="desc-text">Iniciando quebra de padrões estéticos.</p>
 
     <button class="module-btn blue" onclick="scrollToBuy()">⚡ 02. ACELERADOR_VISUAL</button>
     <p class="desc-text">Retenção forçada através de dopamina visual.</p>
@@ -167,6 +167,7 @@ body {
 <script>
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
+// Função para tocar sons sintéticos
 function playSound(freq, type, duration, vol) {
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
@@ -177,6 +178,13 @@ function playSound(freq, type, duration, vol) {
     osc.connect(gain); gain.connect(audioCtx.destination);
     osc.start(); osc.stop(audioCtx.currentTime + duration);
 }
+
+// Unmute vídeo no primeiro clique (bypass de navegadores)
+window.addEventListener('click', () => {
+    const video = document.getElementById('goatVideo');
+    video.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+    video.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+}, { once: true });
 
 function scrollToBuy() {
     document.getElementById('oferta').scrollIntoView({ behavior: 'smooth' });
@@ -193,7 +201,7 @@ function accessDenied() {
 }
 
 function triggerAccess() {
-    // Som de checking eletrônico
+    // Som de checking eletrônico (3 bips ascendentes)
     playSound(600, 'sine', 0.1, 0.1);
     setTimeout(() => playSound(900, 'sine', 0.1, 0.1), 100);
     setTimeout(() => playSound(1200, 'sine', 0.3, 0.1), 200);
