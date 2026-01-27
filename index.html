@@ -3,223 +3,205 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Protocolo GOAT</title>
+<title>Protocolo GOAT | Sistema Ativo</title>
 
 <style>
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* BODY */
+/* RESET & BASE */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   background: #000;
   color: #e5e5e5;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Courier New', Courier, monospace;
   cursor: crosshair;
+  overflow-x: hidden;
 }
 
 /* BOOT SYSTEM */
 #boot-screen {
-  position: fixed;
-  inset: 0;
-  background: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  color: #00ffff;
-  font-family: monospace;
-  letter-spacing: 2px;
+  position: fixed; inset: 0; background: #000;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999; color: #00ffff; letter-spacing: 2px;
   animation: bootFade 1.6s ease forwards;
 }
-
 @keyframes bootFade {
-  0% { opacity: 1; }
-  70% { opacity: 1; }
-  100% { opacity: 0; visibility: hidden; }
+  0% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; visibility: hidden; }
 }
 
-/* CONTAINER */
-.container {
-  max-width: 920px;
-  margin: auto;
-  padding: 24px;
+/* HEADER COM FOTO E TÍTULO */
+.header-elite {
+    text-align: center;
+    padding: 30px 20px 10px;
+}
+.profile-thumb {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    border: 2px solid #00ffff;
+    box-shadow: 0 0 15px #00ffff;
+    margin-bottom: 10px;
+    animation: thumbPulse 2s infinite;
+}
+@keyframes thumbPulse {
+    0%, 100% { box-shadow: 0 0 5px #00ffff; }
+    50% { box-shadow: 0 0 20px #00ffff; }
+}
+.main-glow-title {
+    font-size: 28px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+    margin-bottom: 20px;
 }
 
-/* VIDEO BOX */
+.container { max-width: 920px; margin: auto; padding: 24px; }
+
+/* VIDEO BOX NEON */
 .video-box {
-  border: 1px solid #00ffff;
-  box-shadow: 0 0 18px rgba(0,255,255,.6);
+  border: 2px solid #00ffff;
+  box-shadow: 0 0 20px rgba(0,255,255,.4);
   margin-bottom: 32px;
   position: relative;
   width: 100%;
-  aspect-ratio: 16/9; /* Mantém a proporção do vídeo */
+  aspect-ratio: 16/9;
   background: #000;
 }
+.video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-.video-box iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-/* ICONES HUD */
-.icon-hud {
-  width: 20px;
-  height: 20px;
-  stroke: #00ffff;
-  fill: none;
-  margin-right: 10px;
-  filter: drop-shadow(0 0 6px #00ffff);
-  animation: hudPulse 2.4s infinite ease-in-out;
-}
-
-@keyframes hudPulse {
-  0%,100% { opacity: .6; }
-  50% { opacity: 1; }
-}
-
-/* TITULOS */
-h1, h2 {
+/* TÍTULOS NEON FOSFORESCENTES */
+.neon-title {
   display: flex;
   align-items: center;
   margin-bottom: 14px;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  color: #00ffff;
+  text-transform: uppercase;
+  font-size: 18px;
+  text-shadow: 0 0 8px #00ffff, 0 0 15px #00ffff;
+  border-left: 3px solid #00ffff;
+  padding-left: 10px;
 }
 
-.scan-title {
-  position: relative;
-  overflow: hidden;
+.icon-hud {
+  width: 18px; height: 18px;
+  stroke: #00ffff; fill: none; margin-right: 12px;
+  filter: drop-shadow(0 0 5px #00ffff);
 }
 
-.scan-title::after {
-  content: "";
-  position: absolute;
-  top: -120%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(transparent, rgba(0,255,255,.25), transparent);
-  animation: scanOnce 1.2s ease-out forwards;
-}
+p { margin-bottom: 20px; opacity: .8; line-height: 1.6; font-size: 14px; }
 
-@keyframes scanOnce {
-  from { top: -120%; }
-  to { top: 120%; }
-}
-
-/* TEXTO */
-p {
-  margin-bottom: 20px;
-  opacity: .85;
-  line-height: 1.5;
-}
-
-/* CTA */
-.cta {
-  text-align: center;
-  margin: 48px 0;
-}
-
-.cta a {
+/* CTA COM ANIMAÇÃO DE CARREGAMENTO */
+.cta { text-align: center; margin: 48px 0; }
+.btn-unlock {
   display: inline-block;
   color: #00ffff;
-  border: 1px solid #00ffff;
-  padding: 18px 32px;
+  background: transparent;
+  border: 2px solid #00ffff;
+  padding: 20px 40px;
   text-decoration: none;
   font-weight: bold;
-  letter-spacing: 1px;
-  animation: ctaPulse 1.2s infinite ease-in-out;
+  letter-spacing: 2px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
+  animation: ctaPulse 1.5s infinite;
 }
-
 @keyframes ctaPulse {
-  0% { box-shadow: 0 0 10px rgba(0,255,255,.6); }
-  50% { box-shadow: 0 0 26px rgba(0,255,255,1); }
-  100% { box-shadow: 0 0 10px rgba(0,255,255,.6); }
+  0% { box-shadow: 0 0 5px #00ffff; }
+  50% { box-shadow: 0 0 25px #00ffff; }
+  100% { box-shadow: 0 0 5px #00ffff; }
 }
 
-.cta small {
-  display: block;
-  margin-top: 10px;
-  opacity: .7;
-  font-size: 12px;
+/* OVERLAY DE CARREGAMENTO */
+#loading-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 10000;
+    flex-direction: column; align-items: center; justify-content: center;
 }
+.progress-container { width: 250px; height: 2px; background: #111; margin-top: 20px; }
+.progress-bar { width: 0%; height: 100%; background: #00ffff; box-shadow: 0 0 10px #00ffff; }
+
 </style>
 </head>
-
 <body>
 
-<div id="boot-screen">
-  INITIALIZING PROTOCOL...
+<div id="boot-screen">INITIALIZING PROTOCOL...</div>
+
+<div id="loading-overlay">
+    <div style="color: #00ffff; letter-spacing: 5px; font-size: 12px;" id="status-text">CARREGANDO DADOS...</div>
+    <div class="progress-container"><div class="progress-bar" id="bar"></div></div>
+</div>
+
+<div class="header-elite">
+    <img src="https://imgur.com/PoxJsyD.png" class="profile-thumb" alt="Miniatura">
+    <h1 class="main-glow-title">PROTOCOLO GOAT</h1>
 </div>
 
 <div class="container">
 
   <div class="video-box">
-    <iframe 
-        src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&rel=0&modestbranding=1" 
-        frameborder="0" 
-        allow="autoplay; encrypted-media" 
-        allowfullscreen>
-    </iframe>
+    <iframe src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
   </div>
 
-  <h2 class="scan-title">
-    <svg class="icon-hud" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="4"/>
-      <circle cx="12" cy="12" r="8" fill="none"/>
-    </svg>
-    STATUS DO SISTEMA: ATIVO
+  <h2 class="neon-title">
+    <svg class="icon-hud" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>
+    STATUS: ATIVO
   </h2>
+  <p>Nível de acesso restrito. Sistema operando em modo tático.</p>
 
-  <p>Nível de acesso restrito.</p>
-
-  <h1 class="scan-title">
-    <svg class="icon-hud" viewBox="0 0 24 24">
-      <polygon points="12,2 22,7 22,17 12,22 2,17 2,7"/>
-    </svg>
-    Você não precisa de conteúdo. Precisa de protocolo.
-  </h1>
-
-  <p>A maioria tenta. Poucos operam com estrutura.</p>
-
-  <h2 class="scan-title">
-    <svg class="icon-hud" viewBox="0 0 24 24">
-      <rect x="4" y="4" width="6" height="6"/>
-      <rect x="14" y="4" width="6" height="6"/>
-      <rect x="4" y="14" width="6" height="6"/>
-      <rect x="14" y="14" width="6" height="6"/>
-    </svg>
-    MODULE_01 — ACELERADOR VISUAL
+  <h2 class="neon-title">
+    <svg class="icon-hud" viewBox="0 0 24 24"><polygon points="12,2 22,7 22,17 12,22 2,17 2,7"/></svg>
+    CORE_PROTOCOL
   </h2>
+  <p>Você não precisa de conteúdo. Precisa de protocolo. A maioria tenta. Poucos operam com estrutura.</p>
 
-  <p>Estruturas visuais que capturam atenção sem esforço.</p>
+  <h2 class="neon-title">MODULE_01 — ACELERADOR VISUAL</h2>
+  <p>Estruturas visuais de alto impacto que forçam a retenção subconsciente.</p>
 
-  <h2 class="scan-title">
-    <svg class="icon-hud" viewBox="0 0 24 24">
-      <rect x="4" y="4" width="6" height="6"/>
-      <rect x="14" y="4" width="6" height="6"/>
-      <rect x="4" y="14" width="6" height="6"/>
-      <rect x="14" y="14" width="6" height="6"/>
-    </svg>
-    MODULE_02 — DOMÍNIO DA I.A
-  </h2>
-
-  <p>Comandos precisos. Menos erro. Mais controle.</p>
+  <h2 class="neon-title">MODULE_02 — DOMÍNIO DA I.A</h2>
+  <p>Comandos de arquitetura precisos. Redução de ruído e aceleração de resultados.</p>
 
   <div class="cta">
-    <a href="https://pay.hotmart.com/L103950840Q">
+    <button class="btn-unlock" onclick="triggerAccess()">
       ⏻ LIBERAR ACESSO AO PROTOCOLO
-    </a>
-    <small>⦿ system online • ⏣ acesso pronto</small>
+    </button>
+    <small style="display:block; margin-top:15px; color:#555;">⦿ encrypted_connection • ⏣ entry_logged</small>
   </div>
-
 </div>
+
+<script>
+// FUNÇÃO DE SOM (BIP TÁTICO)
+function playBip() {
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+    oscillator.type = 'square';
+    oscillator.frequency.setValueAtTime(880, audioCtx.currentTime); // Frequência do Bip
+    gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    oscillator.start();
+    oscillator.stop(audioCtx.currentTime + 0.1); // Duração do Bip
+}
+
+function triggerAccess() {
+    playBip();
+    document.getElementById('loading-overlay').style.display = 'flex';
+    let width = 0;
+    const bar = document.getElementById('bar');
+    const interval = setInterval(() => {
+        if (width >= 100) {
+            clearInterval(interval);
+            window.location.href = "https://pay.hotmart.com/L103950840Q";
+        } else {
+            width += 2;
+            bar.style.width = width + '%';
+        }
+    }, 40);
+}
+</script>
 
 </body>
 </html>
