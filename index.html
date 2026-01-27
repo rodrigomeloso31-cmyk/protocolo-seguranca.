@@ -1,118 +1,213 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<style>
-    /* Reset Geral */
-    *{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
-    html, body { height: 100%; background: #000; color: #fff; overflow-x: hidden; }
-    
-    .main-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 100vh;
-        padding: 10px 0 100px 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Protocolo Goat | Sistema Ativo</title>
+    <style>
+        :root {
+            --primary: #ff0000;
+            --secondary: #00f2ff;
+            --bg: #050505;
+            --panel: rgba(15, 15, 15, 0.8);
+        }
 
-    .logo-top{width:45px;height:45px;border-radius:50%;box-shadow:0 0 10px red;border:1.5px solid red;margin-bottom:5px}
-    .main-title{font-size:22px;font-weight:bold;margin-bottom:10px}
-    .red-txt{color:red}
-    .divider{width:90%;height:1px;background:#333;margin-bottom:15px}
-    
-    .promo-header{font-size:9px;letter-spacing:1px;color:#888;margin-bottom:8px;text-transform:uppercase}
-    .headline{font-size:16px;font-weight:bold;text-align:center;width:90%;margin-bottom:15px;line-height:1.3}
+        /* Scanline & Grid Effect */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 255, 0.03));
+            z-index: 100;
+            background-size: 100% 4px, 4px 100%;
+            pointer-events: none;
+        }
 
-    /* Video Container */
-    .v-container{width:90%;max-width:340px;aspect-ratio:16/9;border:1.5px solid red;border-radius:12px;overflow:hidden;margin-bottom:15px;position:relative}
-    .v-container iframe{position:absolute;top:0;left:0;width:100%;height:100%}
+        *{margin:0;padding:0;box-sizing:border-box;font-family: 'Courier New', Courier, monospace;}
+        
+        body {
+            background-color: var(--bg);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            letter-spacing: 0.5px;
+        }
 
-    /* Caixas de Texto Estilo Imagem */
-    .info-box{
-        width:90%;max-width:350px;
-        border: 2px solid #00f2ff;
-        outline: 1.5px solid red;
-        outline-offset: -5px;
-        border-radius: 8px;
-        padding: 15px;
-        margin-bottom: 10px;
-    }
-    .info-box h2{color:#00f2ff;font-size:13px;margin-bottom:4px;display:flex;align-items:center;gap:8px}
-    .info-box p{font-size:11px;color:#ccc;line-height:1.3}
+        /* HUD Superior */
+        .hud-status {
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 8px;
+            color: var(--secondary);
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(0, 242, 255, 0.2);
+            opacity: 0.7;
+        }
 
-    .footer-text{font-size:11px;color:#888;margin-top:5px;padding-bottom:20px}
-    
-    /* Botão Azul Neon Fixo */
-    .btn-container{
-        position:fixed;bottom:15px;width:100%;display:flex;justify-content:center;z-index:100;
-        background: linear-gradient(to top, rgba(0,0,0,1) 70%, rgba(0,0,0,0));
-        padding-top: 20px;
-    }
-    .btn-action{
-        width:85%;max-width:320px;
-        background:rgba(0,0,0,0.5);
-        color:#00f2ff;
-        border:2.5px solid #00f2ff;
-        padding:14px;
-        border-radius:50px;
-        font-weight:bold;
-        text-transform:uppercase;
-        font-size:12px;
-        box-shadow: 0 0 12px #00f2ff;
-        cursor:pointer;
-        backdrop-filter: blur(5px);
-    }
+        .header { text-align: center; padding: 25px 0 15px; }
+        .logo {
+            width: 55px; height: 55px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 20px var(--primary);
+            animation: flicker 3s infinite;
+        }
 
-    #loader{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:1000;flex-direction:column;align-items:center;justify-content:center}
-    .bar-bg{width:70%;height:3px;background:#222;border-radius:10px;margin-top:15px;overflow:hidden}
-    .bar-fill{width:0;height:100%;background:red;animation:fill 2s forwards}
-    @keyframes fill{to{width:100%}}
-</style>
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; box-shadow: 0 0 10px var(--primary); }
+            95% { opacity: 0.9; }
+        }
+
+        .title { font-size: 26px; font-weight: 900; margin-top: 10px; text-transform: uppercase; }
+        .red { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+
+        .headline-container { width: 90%; text-align: center; margin-top: 20px; }
+        .sub-header { font-size: 10px; color: var(--secondary); letter-spacing: 4px; margin-bottom: 10px; }
+        .main-headline { font-size: 19px; line-height: 1.3; font-weight: bold; }
+
+        /* Video Box Elite */
+        .video-wrapper {
+            width: 92%; max-width: 360px;
+            aspect-ratio: 16/9;
+            border: 1px solid var(--primary);
+            position: relative;
+            margin: 25px 0;
+            background: #000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+        }
+        .video-wrapper::after {
+            content: "REC ●"; color: red; position: absolute; top: 10px; right: 10px; font-size: 10px; z-index: 5;
+        }
+        iframe { width: 100%; height: 100%; border: none; }
+
+        /* Seções de Info */
+        .grid-container { width: 92%; display: grid; gap: 15px; }
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--secondary);
+            padding: 15px;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        .card::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--secondary);
+        }
+        .card h3 { font-size: 13px; color: var(--secondary); margin-bottom: 5px; text-transform: uppercase; }
+        .card p { font-size: 11px; color: #bbb; line-height: 1.4; }
+
+        /* Seção Autoridade Invisível */
+        .authority-box {
+            width: 92%; margin-top: 30px;
+            padding: 20px;
+            border: 1px dashed #333;
+            text-align: center;
+        }
+        .authority-box h4 { font-size: 12px; color: #555; margin-bottom: 10px; letter-spacing: 2px; }
+        .authority-box p { font-size: 11px; color: #777; font-style: italic; line-height: 1.6; }
+
+        /* Botão Vivo CTA */
+        .cta-container {
+            position: fixed; bottom: 0; width: 100%;
+            background: linear-gradient(transparent, #000 40%);
+            padding: 20px 0 30px;
+            display: flex; flex-direction: column; align-items: center;
+            z-index: 200;
+        }
+        .btn-elite {
+            width: 85%; max-width: 320px;
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            padding: 18px;
+            border-radius: 5px;
+            font-size: 14px; font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px var(--secondary);
+            cursor: pointer;
+            animation: pulseBtn 2s infinite;
+            letter-spacing: 2px;
+        }
+        @keyframes pulseBtn {
+            0% { box-shadow: 0 0 5px var(--secondary); transform: scale(1); }
+            50% { box-shadow: 0 0 20px var(--secondary); transform: scale(1.02); }
+            100% { box-shadow: 0 0 5px var(--secondary); transform: scale(1); }
+        }
+        .btn-subtext { font-size: 9px; color: #555; margin-top: 10px; text-transform: uppercase; }
+
+        /* Loading Overlay */
+        #overlay {
+            display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+            background:#000; z-index:999; flex-direction:column; align-items:center; justify-content:center;
+        }
+        .loader-text { color: var(--primary); font-size: 12px; margin-bottom: 10px; }
+        .progress-bar { width: 200px; height: 2px; background: #222; position: relative; }
+        .progress-fill { width: 0; height: 100%; background: var(--primary); animation: load 2.5s forwards; }
+        @keyframes load { to { width: 100%; } }
+    </style>
 </head>
 <body>
 
-    <div id="loader">
-        <div style="color:red;font-size:11px;letter-spacing:2px">AUTORIZANDO...</div>
-        <div class="bar-bg"><div class="bar-fill"></div></div>
+<div id="overlay">
+    <div class="loader-text">ESTABELECENDO CONEXÃO SEGURA...</div>
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+</div>
+
+<div class="hud-status">
+    <span>Status: Sistema Ativo</span>
+    <span>Acesso: Nível 4</span>
+    <span>Encrip: AES-256</span>
+</div>
+
+<div class="header">
+    <img src="https://imgur.com/PoxJsyD.png" class="logo">
+    <h1 class="title">PROTOCOLO <span class="red">GOAT</span></h1>
+</div>
+
+<div class="headline-container">
+    <div class="sub-header">ENTRADA CONTROLADA</div>
+    <p class="main-headline">
+        Você não precisa de conteúdo.<br>Você precisa do <span class="red">DOMÍNIO</span> do processo.
+    </p>
+</div>
+
+<div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&mute=1&rel=0" allow="autoplay"></iframe>
+</div>
+
+<div class="grid-container">
+    <div class="card">
+        <h3>🛡️ ACELERAÇÃO VISUAL</h3>
+        <p>Implementação de engenharia de retenção em níveis subconscientes.</p>
     </div>
-
-    <div class="main-wrapper">
-        <img src="https://imgur.com/PoxJsyD.png" class="logo-top">
-        <div class="main-title">Protocolo <span class="red-txt">Goat</span></div>
-        
-        <div class="divider"></div>
-        
-        <div class="promo-header">Acesso Restrito • Oferta Única</div>
-        <div class="headline">Você não precisa de conteúdo.<br>Precisa do <span class="red-txt">Protocolo</span> certo.</div>
-
-        <div class="v-container">
-            <iframe src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&rel=0&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-
-        <div class="info-box">
-            <h2>🛡️ ACELERADOR VISUAL</h2>
-            <p>Domine a retenção com estruturas visuais de alto impacto.</p>
-        </div>
-
-        <div class="info-box">
-            <h2>🛡️ DOMÍNIO DA I.A</h2>
-            <p>Use prompts estratégicos para baixar seu CPA.</p>
-        </div>
-
-        <div class="footer-text">Acesso imediato • Conteúdo direto</div>
+    <div class="card">
+        <h3>🗝️ CONTROLE DE I.A</h3>
+        <p>Utilização de prompts de arquitetura para redução drástica de CPA.</p>
     </div>
+</div>
 
-    <div class="btn-container">
-        <button class="btn-action" onclick="redirect()">Liberar acesso ao protocolo</button>
-    </div>
+<div class="authority-box">
+    <h4>POR QUE ISSO FUNCIONA</h4>
+    <p>"O sistema não é baseado em criatividade mutável, mas em padrões de processamento tático que forçam a atenção do usuário final."</p>
+</div>
+
+<div style="height: 150px;"></div> <div class="cta-container">
+    <button class="btn-elite" onclick="start()">DESBLOQUEAR ACESSO AGORA</button>
+    <div class="btn-subtext">Baixo risco tático • Controle total do sistema</div>
+</div>
 
 <script>
-    function redirect(){
-        document.getElementById('loader').style.display='flex';
-        setTimeout(function(){
+    function start() {
+        document.getElementById('overlay').style.display = 'flex';
+        setTimeout(() => {
             window.location.href = "https://pay.hotmart.com/L103950840Q";
-        }, 2200);
+        }, 2600);
     }
 </script>
 
