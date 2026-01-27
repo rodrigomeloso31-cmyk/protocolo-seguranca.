@@ -8,17 +8,15 @@
     *{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
     html, body { height: 100%; background: #000; color: #fff; overflow-x: hidden; }
     
-    /* Container Principal para evitar rolagem excessiva */
     .main-wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
         min-height: 100vh;
-        padding: 10px 0 100px 0; /* Espaço para o botão fixo */
+        padding: 10px 0 100px 0;
     }
 
-    /* Cabeçalho */
-    .logo-top{width:45px;height:45px;border-radius:50%;box-shadow:0 0 10px red;border:1px solid red;margin-bottom:5px}
+    .logo-top{width:45px;height:45px;border-radius:50%;box-shadow:0 0 10px red;border:1.5px solid red;margin-bottom:5px}
     .main-title{font-size:22px;font-weight:bold;margin-bottom:10px}
     .red-txt{color:red}
     .divider{width:90%;height:1px;background:#333;margin-bottom:15px}
@@ -26,11 +24,11 @@
     .promo-header{font-size:9px;letter-spacing:1px;color:#888;margin-bottom:8px;text-transform:uppercase}
     .headline{font-size:16px;font-weight:bold;text-align:center;width:90%;margin-bottom:15px;line-height:1.3}
 
-    /* Video Container Redimensionável */
+    /* Video Container */
     .v-container{width:90%;max-width:340px;aspect-ratio:16/9;border:1.5px solid red;border-radius:12px;overflow:hidden;margin-bottom:15px;position:relative}
     .v-container iframe{position:absolute;top:0;left:0;width:100%;height:100%}
 
-    /* Caixas de Texto com Borda Dupla (Azul/Vermelha) */
+    /* Caixas de Texto Estilo Imagem */
     .info-box{
         width:90%;max-width:350px;
         border: 2px solid #00f2ff;
@@ -43,10 +41,9 @@
     .info-box h2{color:#00f2ff;font-size:13px;margin-bottom:4px;display:flex;align-items:center;gap:8px}
     .info-box p{font-size:11px;color:#ccc;line-height:1.3}
 
-    /* Rodapé */
     .footer-text{font-size:11px;color:#888;margin-top:5px;padding-bottom:20px}
     
-    /* Botão Azul Neon Fixo no Rodapé */
+    /* Botão Azul Neon Fixo */
     .btn-container{
         position:fixed;bottom:15px;width:100%;display:flex;justify-content:center;z-index:100;
         background: linear-gradient(to top, rgba(0,0,0,1) 70%, rgba(0,0,0,0));
@@ -67,7 +64,6 @@
         backdrop-filter: blur(5px);
     }
 
-    /* Overlay de Loading */
     #loader{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:1000;flex-direction:column;align-items:center;justify-content:center}
     .bar-bg{width:70%;height:3px;background:#222;border-radius:10px;margin-top:15px;overflow:hidden}
     .bar-fill{width:0;height:100%;background:red;animation:fill 2s forwards}
@@ -91,7 +87,7 @@
         <div class="headline">Você não precisa de conteúdo.<br>Precisa do <span class="red-txt">Protocolo</span> certo.</div>
 
         <div class="v-container">
-            <iframe src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&mute=1&rel=0&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&rel=0&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
 
         <div class="info-box">
