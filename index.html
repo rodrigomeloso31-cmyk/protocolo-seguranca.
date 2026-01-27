@@ -5,36 +5,70 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
-body{background:#000;color:#fff;display:flex;flex-direction:column;align-items:center;overflow-x:hidden}
-.h{text-align:center;padding:15px;width:100%}.l{width:60px;height:60px;border-radius:50%;border:2px solid red;box-shadow:0 0 15px red}
+body{background:#000;color:#fff;display:flex;flex-direction:column;align-items:center;width:100%;overflow-x:hidden}
+.h{text-align:center;padding:15px;width:100%}
+.l{width:60px;height:60px;border-radius:50%;border:2px solid red;box-shadow:0 0 15px red;object-fit:cover}
 .c{width:95%;max-width:400px;text-align:center}
-/* Vídeo Cinema */
-.v{width:100%;aspect-ratio:16/9;border:2px solid #333;border-radius:15px;overflow:hidden;margin-bottom:20px;position:relative}
-.v iframe{position:absolute;top:50%;left:50%;width:100%;height:185%;transform:translate(-50%,-50%)}
-/* Boxes Azul Neon */
+
+/* Video Shorts Formato Vertical */
+.v-box{width:100%;aspect-ratio:9/16;max-height:500px;border:2px solid #333;border-radius:20px;overflow:hidden;margin-bottom:20px;position:relative;background:#000}
+.v-box iframe{position:absolute;top:0;left:0;width:100%;height:100%}
+
+/* Boxes Azul Neon com Pulsar */
 .s{width:100%;padding:15px;border:2px solid #00f2ff;border-radius:25px;margin-bottom:12px;display:flex;align-items:center;gap:12px;box-shadow:0 0 15px #00f2ff;animation:pB 2s infinite}
-@keyframes pB{0%,100%{box-shadow:0 0 5px #00f2ff}50%{box-shadow:0 0 20px #00f2ff}}
+@keyframes pB{0%,100%{box-shadow:0 0 5px #00f2ff;border-color:#00f2ff}50%{box-shadow:0 0 20px #00f2ff;border-color:#00eaff}}
 .s h2{color:#00f2ff;font-size:14px;text-transform:uppercase;text-shadow:0 0 10px #00f2ff}
-.s p{font-size:11px;opacity:0.9}.icon{font-size:20px}
-/* Botão Vermelho Neon */
-.btn{width:100%;background:none;color:#ff0000;padding:22px;font-size:16px;font-weight:900;border-radius:50px;border:3px solid #ff0000;text-transform:uppercase;box-shadow:0 0 15px #ff0000;animation:pR 1.5s infinite}
-@keyframes pR{0%,100%{transform:scale(1)}50%{transform:scale(1.03);box-shadow:0 0 25px #ff0000}}
+.s p{font-size:11px;opacity:0.9;color:#fff}
+.icon{font-size:20px}
+
+/* Botão Vermelho Neon Boleado */
+.btn{width:100%;background:none;color:#ff0000;padding:22px;font-size:16px;font-weight:900;border-radius:50px;border:3px solid #ff0000;text-transform:uppercase;box-shadow:0 0 15px #ff0000;animation:pR 1.5s infinite;margin-top:10px}
+@keyframes pR{0%,100%{transform:scale(1);box-shadow:0 0 10px #ff0000}50%{transform:scale(1.03);box-shadow:0 0 25px #ff0000}}
+
+/* Loading Screen */
 #o{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99;flex-direction:column;align-items:center;justify-content:center}
-.b{width:70%;height:4px;background:#111;border-radius:10px;margin-top:20px;overflow:hidden;border:1px solid red}
+.b{width:70%;height:4px;background:#111;border-radius:10px;margin:20px 0;overflow:hidden;border:1px solid red}
 .g{width:0;height:100%;background:red;animation:load 3s forwards}@keyframes load{to{width:100%}}
 </style>
 </head>
 <body>
-<div id="o"><div style="color:red;font-size:12px">CRIPTOGRAFANDO...<div class="b"><div class="g"></div></div></div></div>
-<div class="h"><img src="https://imgur.com/PoxJsyD.png" class="l"><div style="font-size:22px;font-weight:700;margin-top:8px">Protocolo <span style="color:red">Goat</span></div></div>
-<div class="c">
-<div class="v"><iframe src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&mute=0&loop=1&playlist=MkY7ajtJp0U&controls=0" frameborder="0"></iframe></div>
-<div class="s"><span class="icon">🛡️</span><div><h2>Acelerador Visual</h2><p>Domine a retenção com estruturas de impacto.</p></div></div>
-<div class="s"><span class="icon">🗝️</span><div><h2>Domínio da I.A</h2><p>Use prompts para baixar seu CPA.</p></div></div>
-<button class="btn" onclick="start()">LIBERAR ACESSO AO PROTOCOLO</button>
+
+<div id="o">
+    <div style="color:red;font-size:12px;letter-spacing:2px">CONFIGURANDO ACESSO...
+        <div class="b"><div class="g"></div></div>
+    </div>
 </div>
+
+<div class="h">
+    <img src="https://imgur.com/PoxJsyD.png" class="l">
+    <div style="font-size:22px;font-weight:700;margin-top:8px">Protocolo <span style="color:red">Goat</span></div>
+</div>
+
+<div class="c">
+    <div class="v-box">
+        <iframe src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&rel=0&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <div class="s">
+        <span class="icon">🛡️</span>
+        <div><h2>Acelerador Visual</h2><p>Domine a retenção com estruturas de impacto.</p></div>
+    </div>
+
+    <div class="s">
+        <span class="icon">🗝️</span>
+        <div><h2 style="color:#ffffff; text-shadow:none;">Domínio da I.A</h2><p>Use prompts para baixar seu CPA.</p></div>
+    </div>
+
+    <button class="btn" onclick="start()">LIBERAR ACESSO AO PROTOCOLO</button>
+</div>
+
 <script>
-function start(){document.getElementById('o').style.display='flex';setTimeout(()=>{window.location.assign("https://pay.hotmart.com/L103950840Q")},3500)}
+function start(){
+    document.getElementById('o').style.display='flex';
+    setTimeout(()=>{
+        window.location.assign("https://pay.hotmart.com/L103950840Q");
+    },3500);
+}
 </script>
 </body>
 </html>
