@@ -3,147 +3,111 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Protocolo GOAT | Sistema Ativado</title>
+<title>Protocolo GOAT | Oferta Exclusiva</title>
 
 <style>
-/* RESET & CYBER ESTATÉTICA */
+/* RESET & BASE */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-    background: #000;
-    color: #e5e5e5;
-    font-family: 'Segoe UI', Roboto, sans-serif;
-    overflow-x: hidden;
+  background: #000;
+  color: #e5e5e5;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
 }
 
-.container { max-width: 600px; margin: auto; padding: 20px; }
-
-/* MICRO-COMANDO SUPERIOR ESQUERDO */
-#top-hint {
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 10001;
-    color: #00ff41;
-    font-family: monospace;
-    font-size: 11px;
-    font-weight: bold;
-    text-transform: uppercase;
-    background: rgba(0, 255, 65, 0.1);
-    padding: 8px 12px;
-    border-radius: 5px;
-    border: 1px solid #00ff41;
-    cursor: pointer;
-    animation: blink 1.5s infinite;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-@keyframes blink { 0%, 100% { opacity: 1; box-shadow: 0 0 5px #00ff41; } 50% { opacity: 0.4; box-shadow: 0 0 0px #00ff41; } }
-
-/* HEADER */
-.header-elite { text-align: center; padding: 40px 20px 10px; }
-.profile-thumb {
-    width: 65px; height: 65px;
-    border-radius: 50%;
-    border: 2px solid #ff0000;
-    box-shadow: 0 0 15px #ff0000;
-    margin-bottom: 10px;
-}
-.main-glow-title {
-    font-size: 24px; font-weight: 900;
-    color: #fff; text-transform: uppercase; letter-spacing: 2px;
-    text-shadow: 0 0 10px #ff0000;
-}
-
-/* VIDEO BOX (PROTEGIDA) */
-.video-box {
-    border: 3px solid #00ffff;
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0,255,255,.3);
-    margin-bottom: 20px;
-    position: relative;
-    width: 100%; aspect-ratio: 16/9;
-    overflow: hidden; background: #000;
-    pointer-events: none; /* Evita redirecionamento para o Youtube */
-}
-.video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-
-/* TERMINAL TEXT */
-.typing-container { height: 35px; text-align: center; margin-bottom: 20px; }
-#typing-text { color: #00ff41; font-family: monospace; font-size: 13px; text-shadow: 0 0 5px #00ff41; }
-
-/* MÓDULOS NEON PULSANTES */
-.module-btn {
-    display: flex; align-items: center; justify-content: center;
-    width: 100%; padding: 18px; margin-bottom: 10px;
-    background: rgba(0, 0, 0, 0.4);
-    border: 2px solid #00ff41;
-    border-radius: 12px;
-    color: #00ff41;
-    font-size: 14px; font-weight: 900;
-    text-transform: uppercase; letter-spacing: 1px;
-    cursor: pointer;
-    animation: pulseGreen 1.5s infinite alternate ease-in-out;
-}
-.module-btn.blue { border-color: #00ffff; color: #00ffff; animation: pulseBlue 1.5s infinite alternate ease-in-out; }
-.module-btn.red { border-color: #ff0000; color: #ff0000; animation: pulseRed 1.5s infinite alternate ease-in-out; }
-
-@keyframes pulseGreen { 0% { box-shadow: 0 0 2px #00ff41; } 100% { box-shadow: 0 0 15px #00ff41; } }
-@keyframes pulseBlue { 0% { box-shadow: 0 0 2px #00ffff; } 100% { box-shadow: 0 0 15px #00ffff; } }
-@keyframes pulseRed { 0% { box-shadow: 0 0 2px #ff0000; } 100% { box-shadow: 0 0 15px #ff0000; } }
-
-/* SCANNER PDF */
-.pdf-scanner {
-    width: 100%; height: 160px;
-    background: #0a0a0a; border: 1px solid #333;
-    border-radius: 15px; position: relative;
-    overflow: hidden; margin: 20px 0;
-    display: flex; align-items: center; justify-content: center;
-}
-.scan-line {
-    position: absolute; width: 100%; height: 2px;
-    background: #ff0000; box-shadow: 0 0 10px #ff0000;
-    top: 0; animation: scan 3s infinite linear;
-}
-@keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
-.shake-error { animation: shake 0.3s ease-in-out !important; border-color: #ff0000 !important; }
-@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
-
-/* PROMO CARD */
-.promo-card {
-    border: 4px solid #ffcc00; border-radius: 25px;
-    padding: 30px 20px; text-align: center;
-    background: #050505;
-    box-shadow: 0 0 30px rgba(255, 204, 0, 0.2);
-    margin-bottom: 50px;
-}
-.price-main { font-size: 52px; font-weight: 900; color: #ffcc00; }
-.btn-final {
-    background: linear-gradient(to bottom, #ffcc00, #ff9900);
-    color: #000; border: none; padding: 20px;
-    border-radius: 15px; font-weight: 900; width: 100%;
-    text-transform: uppercase; cursor: pointer;
-}
-
-/* OVERLAY */
+/* BOOT SYSTEM */
 #overlay {
     display:none; position:fixed; top:0; left:0; width:100%; height:100%;
     background:rgba(0,0,0,0.98); z-index:10000; flex-direction:column; align-items:center; justify-content:center;
 }
-.bar-bg { width: 200px; height: 4px; background: #111; margin-top: 20px; overflow: hidden; }
-.bar-fill { width: 0%; height: 100%; background: #ffcc00; }
+.bar-bg { width: 200px; height: 4px; background: #111; margin-top: 20px; border-radius: 10px; overflow: hidden; }
+.bar-fill { width: 0%; height: 100%; background: #ffcc00; box-shadow: 0 0 10px #ffcc00; }
+
+/* HEADER */
+.header-elite { text-align: center; padding: 30px 20px 10px; }
+.profile-thumb {
+    width: 70px; height: 70px;
+    border-radius: 50%;
+    border: 3px solid #ff0000;
+    box-shadow: 0 0 20px #ff0000;
+    margin-bottom: 15px;
+}
+.main-glow-title {
+    font-size: 26px; font-weight: 900;
+    color: #fff; text-transform: uppercase; letter-spacing: 3px;
+    text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000;
+}
+
+.container { max-width: 600px; margin: auto; padding: 20px; }
+
+/* VIDEO BOX */
+.video-box {
+  border: 4px solid #00ffff;
+  border-radius: 25px;
+  box-shadow: 0 0 30px rgba(0,255,255,.5);
+  margin-bottom: 35px;
+  position: relative;
+  width: 100%; aspect-ratio: 16/9;
+  overflow: hidden; background: #000;
+}
+.video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+/* NEON MODULES */
+.neon-module {
+  display: flex; align-items: center;
+  width: 100%; padding: 18px; margin-bottom: 12px;
+  background: rgba(0,0,0,0.4);
+  border-radius: 20px;
+  border: 4px solid #ff0000;
+  color: #ff0000;
+  text-transform: uppercase; font-weight: 900;
+  text-shadow: 0 0 10px #ff0000;
+  animation: pulseRed 2s infinite ease-in-out;
+}
+.blue-mod { border-color: #00ffff; color: #00ffff; text-shadow: 0 0 10px #00ffff; animation: pulseBlue 2s infinite ease-in-out; }
+
+@keyframes pulseRed { 0%, 100% { box-shadow: 0 0 10px #ff0000; } 50% { box-shadow: 0 0 25px #ff0000; } }
+@keyframes pulseBlue { 0%, 100% { box-shadow: 0 0 10px #00ffff; } 50% { box-shadow: 0 0 25px #00ffff; } }
+
+.desc-text { padding: 0 15px 20px; font-size: 14px; opacity: 0.8; line-height: 1.5; }
+
+/* PROMO CARD */
+.promo-card {
+    border: 4px solid #ffcc00;
+    border-radius: 25px;
+    padding: 30px 20px;
+    text-align: center;
+    background: linear-gradient(145deg, #0a0a0a, #000);
+    box-shadow: 0 0 30px rgba(255, 204, 0, 0.3);
+    margin: 40px 0;
+}
+.promo-card h2 { color: #ffcc00; font-size: 28px; text-transform: uppercase; margin-bottom: 20px; text-shadow: 0 0 10px #ffcc00; }
+.promo-list { list-style: none; margin-bottom: 25px; text-align: left; display: inline-block; }
+.promo-list li { margin: 10px 0; font-size: 16px; display: flex; align-items: center; }
+.promo-list li::before { content: '✓'; color: #ffcc00; font-weight: bold; margin-right: 15px; }
+
+.price-box { margin: 20px 0; }
+.price-small { font-size: 20px; color: #fff; vertical-align: middle; font-weight: bold; }
+.price-main { font-size: 58px; font-weight: 900; color: #ffcc00; text-shadow: 0 0 15px #ffcc00; font-family: sans-serif; }
+.price-vista { font-size: 15px; color: #888; margin-top: 5px; letter-spacing: 1px; font-weight: 500; }
+
+/* CTA BUTTON */
+.btn-final {
+    background: linear-gradient(to bottom, #ffcc00, #ff9900);
+    color: #000; border: none; padding: 22px 30px;
+    border-radius: 15px; font-weight: 900; font-size: 18px;
+    text-transform: uppercase; cursor: pointer; width: 100%;
+    box-shadow: 0 5px 20px rgba(255, 204, 0, 0.5);
+    transition: transform 0.2s;
+}
+.btn-final:active { transform: scale(0.96); }
 </style>
 </head>
-<body onclick="unmuteEverything()">
-
-<div id="top-hint" onclick="unmuteEverything()">
-    👉🏼📲 TOQUE PARA O SOM
-</div>
+<body>
 
 <div id="overlay">
-    <div style="color:#00ff41; font-family:monospace; font-size: 12px;">CRIPTOGRAFANDO DADOS GOAT...</div>
+    <div style="color: #ffcc00; letter-spacing: 4px; font-size: 12px; font-weight: bold;">AUTORIZANDO ACESSO...</div>
     <div class="bar-bg"><div class="bar-fill" id="bar"></div></div>
-    <div id="goat-msg" style="color:#fff; font-weight:900; margin-top:20px; display:none; text-align:center;">VOCÊ ESTÁ A UM PASSO DE SER UM GOAT 🐐</div>
 </div>
 
 <div class="header-elite">
@@ -152,104 +116,67 @@ body {
 </div>
 
 <div class="container">
-    <div class="video-box">
-        <iframe id="goatVideo" src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&mute=1&controls=0&rel=0&enablejsapi=1" frameborder="0"></iframe>
-    </div>
+  <div class="video-box">
+    <iframe src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
 
-    <div class="typing-container">
-        <span id="typing-text"></span>
-    </div>
+  <div class="neon-module">STATUS: ATIVO</div>
+  <p class="desc-text">O sistema de retenção tática está operando em capacidade máxima.</p>
 
-    <button class="module-btn" onclick="scrollToBuy()">💻 01. ACESSO_AO_SISTEMA</button>
-    <button class="module-btn blue" onclick="scrollToBuy()">⚡ 02. ACELERADOR_VISUAL</button>
-    <button class="module-btn red" onclick="scrollToBuy()">🔥 03. O_SEGREDO_GOAT</button>
+  <div class="neon-module blue-mod">MODULE_01 — ACELERADOR VISUAL</div>
+  <p class="desc-text">Estruturas visuais de alto impacto desenhadas para prender a atenção subconsciente.</p>
 
-    <div class="pdf-scanner" id="pdfBlock" onclick="accessDenied()">
-        <div class="scan-line"></div>
-        <div style="filter: blur(5px); opacity: 0.2; font-size: 10px; text-align: center;">DADOS CRIPTOGRAFADOS // PÁGINA 12</div>
-        <div style="position: absolute; color: #fff; font-weight: bold; background: rgba(255,0,0,0.8); padding: 5px 12px; border-radius: 4px; font-size: 12px;">ARQUIVO BLOQUEADO</div>
-    </div>
+  <div class="promo-card">
+      <h2>Pack Goat</h2>
+      
+      <ul class="promo-list">
+          <li>Acesso Vitalício ao Protocolo</li>
+          <li>Engenharia Visual Advanced</li>
+          <li>Domínio Estratégico de I.A</li>
+      </ul>
 
-    <div class="promo-card" id="oferta">
-        <div class="price-box">
-            <span class="price-main">R$ 29,90</span>
-        </div>
-        <button class="btn-final" onclick="triggerAccess()">DESBLOQUEAR TUDO AGORA</button>
-    </div>
+      <div class="price-box">
+          <span style="text-decoration: line-through; color: #444; display: block; margin-bottom: 8px; font-size: 14px;">De R$ 117,00 por</span>
+          <span class="price-small">6x de</span>
+          <span class="price-main">R$ 8,99</span>
+          <div class="price-vista">ou 47,90 à vista</div>
+      </div>
+
+      <button class="btn-final" onclick="triggerAccess()">
+          SIM, QUERO O PROTOCOLO!
+      </button>
+      
+      <p style="font-size: 11px; margin-top: 20px; color: #666; letter-spacing: 1px;">ACESSO IMEDIATO • OFERTA NÃO REPETÍVEL</p>
+  </div>
+
 </div>
 
 <script>
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-// Função de som para Bips e Erros
-function playSound(freq, type, duration, vol) {
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = type;
-    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-    gain.gain.setValueAtTime(vol, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
-    osc.connect(gain); gain.connect(audioCtx.destination);
-    osc.start(); osc.stop(audioCtx.currentTime + duration);
-}
-
-// ATIVAR SOM GLOBAL (VÍDEO + INTERAÇÃO)
-function unmuteEverything() {
-    // Unmute vídeo
-    const video = document.getElementById('goatVideo');
-    video.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
-    video.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-    
-    // Som de ativação de sistema
-    playSound(800, 'sine', 0.2, 0.1);
-    
-    // Esconde o botão de dica
-    const hint = document.getElementById('top-hint');
-    if(hint) hint.style.display = 'none';
-}
-
-// EFEITO DE DIGITAÇÃO
-const phrases = ["SISTEMA OPERACIONAL ATIVO...", "DECODIFICANDO PADRÕES...", "CONEXÃO GOAT ESTABELECIDA..."];
-let pIdx = 0, charIdx = 0, isDel = false;
-function type() {
-    const target = document.getElementById("typing-text");
-    const full = phrases[pIdx];
-    target.innerHTML = isDel ? full.substring(0, charIdx--) : full.substring(0, charIdx++);
-    if (!isDel && charIdx > full.length) { setTimeout(() => isDel = true, 2000); }
-    else if (isDel && charIdx < 0) { isDel = false; pIdx = (pIdx + 1) % phrases.length; charIdx = 0; }
-    setTimeout(type, isDel ? 50 : 100);
-}
-window.onload = type;
-
-function scrollToBuy() {
-    playSound(600, 'sine', 0.1, 0.05); // Bip suave ao rolar
-    document.getElementById('oferta').scrollIntoView({ behavior: 'smooth' });
-}
-
-function accessDenied() {
-    playSound(150, 'sawtooth', 0.3, 0.2); // Som de erro agressivo
-    const block = document.getElementById('pdfBlock');
-    block.classList.add('shake-error');
-    setTimeout(() => block.classList.remove('shake-error'), 400);
+function playBip() {
+    try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(1000, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        osc.connect(gain); gain.connect(audioCtx.destination);
+        osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+    } catch(e) { console.log("Audio bypass"); }
 }
 
 function triggerAccess() {
-    // Som de checking eletrônico (3 bips ascendentes)
-    playSound(600, 'sine', 0.1, 0.1);
-    setTimeout(() => playSound(900, 'sine', 0.1, 0.1), 100);
-    setTimeout(() => playSound(1200, 'sine', 0.3, 0.1), 200);
-
+    playBip();
     document.getElementById('overlay').style.display = 'flex';
     let w = 0;
     const interval = setInterval(() => {
         if (w >= 100) {
             clearInterval(interval);
-            document.getElementById('goat-msg').style.display = 'block';
-            setTimeout(() => { window.location.href = "https://pay.hotmart.com/L103950840Q"; }, 2500);
+            window.location.href = "https://pay.hotmart.com/L103950840Q?off=55x6x7d1";
         } else {
             w += 2; document.getElementById('bar').style.width = w + '%';
         }
-    }, 40);
+    }, 35);
 }
 </script>
 
