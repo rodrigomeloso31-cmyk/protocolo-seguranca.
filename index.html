@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Protocolo GOAT | Oferta Exclusiva</title>
+<title>Protocolo GOAT | Sistema Ativado</title>
 
 <style>
 /* RESET & BASE */
@@ -44,69 +44,75 @@ body {
 }
 .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-/* NEON MODULES */
-.neon-module {
-  display: flex; align-items: center;
-  width: 100%; padding: 18px; margin-bottom: 12px;
-  background: rgba(0,0,0,0.4);
-  border-radius: 20px;
-  border: 4px solid #ff0000;
-  color: #ff0000;
-  text-transform: uppercase; font-weight: 900;
-  text-shadow: 0 0 10px #ff0000;
-  animation: pulseRed 2s infinite ease-in-out;
+/* NOVOS BOTÕES DE MÓDULO NEON */
+.module-btn {
+    display: flex; align-items: center;
+    width: 100%; padding: 18px; margin-bottom: 10px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 3px solid #00ff41; /* Verde Fósforo */
+    border-radius: 15px;
+    color: #00ff41;
+    font-size: 14px; font-weight: 900;
+    text-transform: uppercase; letter-spacing: 1px;
+    cursor: pointer;
+    animation: pulseGreen 1.5s infinite alternate ease-in-out;
+    transition: 0.3s;
 }
-.blue-mod { border-color: #00ffff; color: #00ffff; text-shadow: 0 0 10px #00ffff; animation: pulseBlue 2s infinite ease-in-out; }
 
-@keyframes pulseRed { 0%, 100% { box-shadow: 0 0 10px #ff0000; } 50% { box-shadow: 0 0 25px #ff0000; } }
-@keyframes pulseBlue { 0%, 100% { box-shadow: 0 0 10px #00ffff; } 50% { box-shadow: 0 0 25px #00ffff; } }
+.module-btn.blue { border-color: #00ffff; color: #00ffff; animation: pulseBlue 1.5s infinite alternate ease-in-out; }
+.module-btn.red { border-color: #ff0000; color: #ff0000; animation: pulseRed 1.5s infinite alternate ease-in-out; }
 
-.desc-text { padding: 0 15px 20px; font-size: 14px; opacity: 0.8; }
+@keyframes pulseGreen { 0% { box-shadow: 0 0 5px #00ff41; } 100% { box-shadow: 0 0 18px #00ff41; } }
+@keyframes pulseBlue { 0% { box-shadow: 0 0 5px #00ffff; } 100% { box-shadow: 0 0 18px #00ffff; } }
+@keyframes pulseRed { 0% { box-shadow: 0 0 5px #ff0000; } 100% { box-shadow: 0 0 18px #ff0000; } }
 
-/* SEÇÃO DE PROMOÇÃO (ESTILO ARSENAL) */
+.desc-text { padding: 0 15px 25px; font-size: 13px; opacity: 0.6; font-style: italic; }
+
+/* PREVIEW DO PDF (SCANNER) */
+.pdf-scanner {
+    width: 100%; height: 200px;
+    background: #0a0a0a; border: 1px solid #333;
+    border-radius: 15px; position: relative;
+    overflow: hidden; margin: 20px 0;
+    display: flex; align-items: center; justify-content: center;
+}
+.scan-line {
+    position: absolute; width: 100%; height: 3px;
+    background: #ff0000; box-shadow: 0 0 15px #ff0000;
+    top: 0; animation: scan 3s infinite linear; z-index: 2;
+}
+@keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
+.blurred-content { filter: blur(6px); opacity: 0.3; text-align: center; font-size: 10px; }
+
+/* PROMO CARD */
 .promo-card {
-    border: 4px solid #ffcc00;
-    border-radius: 25px;
-    padding: 30px 20px;
-    text-align: center;
+    border: 4px solid #ffcc00; border-radius: 25px;
+    padding: 30px 20px; text-align: center;
     background: linear-gradient(145deg, #0a0a0a, #000);
     box-shadow: 0 0 30px rgba(255, 204, 0, 0.3);
     margin: 40px 0;
 }
-.promo-card h2 { color: #ffcc00; font-size: 28px; text-transform: uppercase; margin-bottom: 20px; text-shadow: 0 0 10px #ffcc00; }
-.promo-list { list-style: none; margin-bottom: 25px; text-align: left; display: inline-block; }
-.promo-list li { margin: 10px 0; font-size: 16px; display: flex; align-items: center; }
-.promo-list li::before { content: '✓'; color: #ffcc00; font-weight: bold; margin-right: 10px; }
-
-.price-box { margin: 20px 0; font-family: sans-serif; }
-.price-small { font-size: 18px; color: #fff; vertical-align: middle; }
 .price-main { font-size: 52px; font-weight: 900; color: #ffcc00; text-shadow: 0 0 15px #ffcc00; }
-.price-vista { font-size: 14px; color: #888; margin-top: 5px; }
-
-/* CTA BUTTON */
 .btn-final {
     background: linear-gradient(to bottom, #ffcc00, #ff9900);
-    color: #000; border: none; padding: 20px 30px;
-    border-radius: 15px; font-weight: 900; font-size: 18px;
-    text-transform: uppercase; cursor: pointer; width: 100%;
-    box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4);
-    transition: 0.2s;
+    color: #000; border: none; padding: 20px;
+    border-radius: 15px; font-weight: 900; width: 100%;
+    text-transform: uppercase; cursor: pointer;
 }
-.btn-final:active { transform: scale(0.98); }
 
-/* OVERLAY */
+/* OVERLAY LOADING */
 #overlay {
     display:none; position:fixed; top:0; left:0; width:100%; height:100%;
     background:rgba(0,0,0,0.98); z-index:10000; flex-direction:column; align-items:center; justify-content:center;
 }
-.bar-bg { width: 200px; height: 4px; background: #111; margin-top: 20px; border-radius: 10px; overflow: hidden; }
+.bar-bg { width: 200px; height: 4px; background: #111; margin-top: 20px; }
 .bar-fill { width: 0%; height: 100%; background: #ffcc00; }
 </style>
 </head>
 <body>
 
 <div id="overlay">
-    <div style="color: #ffcc00; letter-spacing: 4px; font-size: 12px;">VALIDANDO PROTOCOLO...</div>
+    <div style="color: #ffcc00; letter-spacing: 4px; font-size: 12px;">CRIPTOGRAFIA GOAT ATIVADA...</div>
     <div class="bar-bg"><div class="bar-fill" id="bar"></div></div>
 </div>
 
@@ -116,54 +122,52 @@ body {
 </div>
 
 <div class="container">
-  <div class="video-box">
-    <iframe src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-  </div>
+    <div class="video-box">
+        <iframe src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&mute=1" frameborder="0" allowfullscreen></iframe>
+    </div>
 
-  <div class="neon-module">STATUS: ATIVO</div>
-  <p class="desc-text">Sistema operando em modo tático para alta retenção.</p>
+    <button class="module-btn" onclick="scrollToBuy()">💻 01. PROTOCOLO_INICIAL // ACESSO</button>
+    <p class="desc-text">Quebra de padrões estéticos e fundamentos GOAT.</p>
 
-  <div class="neon-module blue-mod">MODULE_01 — ACELERADOR VISUAL</div>
-  <p class="desc-text">Dominância estética e retenção subconsciente forçada.</p>
+    <button class="module-btn blue" onclick="scrollToBuy()">⚡ 02. ACELERADOR_VISUAL // V0.2</button>
+    <p class="desc-text">Técnicas de edição para retenção forçada de atenção.</p>
 
-  <div class="promo-card">
-      <h2>Pack Goat</h2>
-      
-      <ul class="promo-list">
-          <li>Acesso Vitalício ao Protocolo</li>
-          <li>Acelerador Visual Advanced</li>
-          <li>Domínio total de I.A</li>
-      </ul>
+    <button class="module-btn" onclick="scrollToBuy()">👁️ 03. DOMÍNIO_SUBCONSCIENTE</button>
+    <p class="desc-text">O segredo por trás da dominância de algoritmos.</p>
 
-      <div class="price-box">
-          <span style="text-decoration: line-through; color: #555; display: block; margin-bottom: 5px;">De R$ 97,00 por</span>
-          <span class="price-small">4x de</span>
-          <span class="price-main">R$ 8,14</span>
-          <div class="price-vista">ou 29,90 à vista</div>
-      </div>
+    <button class="module-btn blue" onclick="scrollToBuy()">🤖 04. I.A_GENERATIVA_TÁTICA</button>
+    <p class="desc-text">Uso de inteligência artificial para escala massiva.</p>
 
-      <button class="btn-final" onclick="triggerAccess()">
-          SIM, QUERO O PROTOCOLO!
-      </button>
-      
-      <p style="font-size: 12px; margin-top: 20px; color: #555;">Esta oferta encerrará em breve!</p>
-  </div>
+    <button class="module-btn red" onclick="scrollToBuy()">🔥 05. O_CONTEÚDO_CONFIDENCIAL</button>
+    <p class="desc-text">Acesso ao nível mais restrito do Protocolo.</p>
 
+    <div class="pdf-scanner">
+        <div class="scan-line"></div>
+        <div class="blurred-content">
+            <p>CONTEÚDO ESTRUTURADO - PROTOCOLO GOAT</p>
+            <p>PÁGINA 01: INTRODUÇÃO AOS CONCEITOS...</p>
+            <p>PÁGINA 02: O SEGREDO DA COR...</p>
+            <p>PÁGINA 03: [DADOS PROTEGIDOS PELO PAYWALL]</p>
+        </div>
+        <div style="position: absolute; color: #fff; font-weight: bold; background: rgba(255,0,0,0.6); padding: 5px 10px; border-radius: 5px;">PDF BLOQUEADO</div>
+    </div>
+
+    <div class="promo-card" id="oferta">
+        <h2>Pack Goat</h2>
+        <div class="price-box">
+            <span style="text-decoration: line-through; color: #555; display: block;">De R$ 97,00 por</span>
+            <span class="price-main">R$ 29,90</span>
+        </div>
+        <button class="btn-final" onclick="triggerAccess()">DESBLOQUEAR TUDO AGORA</button>
+    </div>
 </div>
 
 <script>
-function playBip() {
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = 'sine'; osc.frequency.setValueAtTime(1000, audioCtx.currentTime);
-    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
-    osc.connect(gain); gain.connect(audioCtx.destination);
-    osc.start(); osc.stop(audioCtx.currentTime + 0.1);
+function scrollToBuy() {
+    document.getElementById('oferta').scrollIntoView({ behavior: 'smooth' });
 }
 
 function triggerAccess() {
-    playBip();
     document.getElementById('overlay').style.display = 'flex';
     let w = 0;
     const interval = setInterval(() => {
