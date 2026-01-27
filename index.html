@@ -3,39 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Protocolo</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#000;color:#0f0;font-family:monospace;display:flex;justify-content:center;align-items:center;height:100vh;width:100vw;overflow:hidden;padding:15px}
-.t{width:100%;height:95vh;max-width:400px;padding:30px 20px;border:2px solid #0f0;background:rgba(0,255,0,.05);border-radius:15px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:inset 0 0 15px rgba(0,255,0,.2)}
-.h{text-align:center;font-size:18px;font-weight:700;text-shadow:0 0 8px #0f0}
-.bg{width:100%;background:#111;height:18px;border:1px solid #0f0;margin:15px 0}
-.f{width:0;height:100%;background:#0f0;transition:width .1s}
-.l{font-size:14px;flex-grow:1;overflow:hidden;margin:15px 0;line-height:1.5}
-#s{text-align:center;font-size:15px}
-.b{display:none;width:100%;background:#0f0;color:#000;border:none;padding:20px;font-weight:900;border-radius:8px;text-decoration:none;text-align:center;font-size:17px;text-transform:uppercase}
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}body{background:#000;color:#fff;display:flex;flex-direction:column;align-items:center}
+.h{text-align:center;padding:10px;width:100%;border-bottom:1px solid red}.l{width:45px;height:45px;border-radius:50%;border:2px solid red}
+.v{width:100%;max-width:400px;aspect-ratio:16/9;border:2px solid red;overflow:hidden;margin:15px 0;position:relative}
+.v iframe{position:absolute;top:50%;left:50%;width:100%;height:180%;transform:translate(-50%,-50%)}
+.i{display:flex;gap:10px;width:90%;margin-bottom:15px}.s{flex:1;padding:10px;background:rgba(255,0,0,.1);border-left:3px solid red;border-radius:4px}
+.s h2{color:red;font-size:11px}.s p{font-size:10px;opacity:.8}
+.btn{width:90%;background:red;color:#fff;padding:20px;font-size:18px;font-weight:900;border-radius:12px;border:2px solid #fff;animation:p 1.5s infinite}
+@keyframes p{0%,100%{box-shadow:0 0 10px red}50%{box-shadow:0 0 30px red;transform:scale(1.03)}}
+#o{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99;flex-direction:column;align-items:center;justify-content:center}
+.b{width:70%;height:6px;background:#222;border-radius:10px;margin-top:20px;border:1px solid red;overflow:hidden}
+.g{width:0;height:100%;background:red;animation:l 3s forwards}@keyframes l{to{width:100%}}
 </style>
 </head>
 <body>
-<audio id="a" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3" preload="auto"></audio>
-<div class="t">
-<div class="h">PROTOCOLO DE SEGURANÇA</div>
-<div class="l" id="l"></div>
-<div>
-<div id="s">VERIFICANDO SISTEMA...</div>
-<div class="bg"><div id="f" class="f"></div></div>
-<a href="https://hotm.io/Protgoat" id="b" class="b">LIBERAR ACESSO</a>
-</div>
-</div>
+<div id="o"><div style="text-align:center;color:red;font-family:monospace">CRIPTOGRAFANDO...<div class="b"><div class="g"></div></div></div></div>
+<div class="h"><img src="https://imgur.com/PoxJsyD.png" class="l"><div style="font-size:20px;font-weight:700">Protocolo <span style="color:red">Goat</span></div></div>
+<div class="v"><iframe src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&loop=1&playlist=MkY7ajtJp0U&controls=0&mute=0" frameborder="0"></iframe></div>
+<div class="i"><div class="s"><h2>Acelerador</h2><p>Retenção extrema.</p></div><div class="s"><h2>Domínio IA</h2><p>Escala e lucro.</p></div></div>
+<button class="btn" onclick="st()">LIBERAR ACESSO</button>
 <script>
-const m=["> Conectando rede... ","> Criptografia ativa...","> Validando token...","> Acesso garantido!"],l=document.getElementById("l"),f=document.getElementById("f"),b=document.getElementById("b"),s=document.getElementById("s"),a=document.getElementById("a");
-let i=0,p=0;
-function play(){a.currentTime=0;a.play().catch(()=>{})}
-const t=setInterval(()=>{
-if(p<100){p++;f.style.width=p+"%";
-if(p%25===0&&i<m.length){l.innerHTML+=m[i]+"<br>";i++;play()}
-}else{clearInterval(t);s.innerText="CONCLUÍDO";b.style.display="block";play()}
-},60);
+function st(){document.getElementById('o').style.display='flex';setTimeout(()=>{window.location.assign("https://pay.hotmart.com/L103950840Q")},4000)}
 </script>
 </body>
 </html>
