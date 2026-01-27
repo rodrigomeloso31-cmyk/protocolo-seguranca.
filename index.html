@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Protocolo GOAT | Sistema Ativo</title>
+<title>Protocolo GOAT | Oferta Exclusiva</title>
 
 <style>
 /* RESET & BASE */
@@ -11,195 +11,169 @@
 body {
   background: #000;
   color: #e5e5e5;
-  font-family: 'Courier New', Courier, monospace;
-  cursor: crosshair;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   overflow-x: hidden;
 }
 
-/* BOOT SYSTEM */
-#boot-screen {
-  position: fixed; inset: 0; background: #000;
-  display: flex; align-items: center; justify-content: center;
-  z-index: 9999; color: #00ffff; letter-spacing: 2px;
-  animation: bootFade 1.6s ease forwards;
-}
-@keyframes bootFade {
-  0% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; visibility: hidden; }
-}
-
-/* HEADER COM FOTO E TÍTULO */
-.header-elite {
-    text-align: center;
-    padding: 30px 20px 10px;
-}
+/* HEADER */
+.header-elite { text-align: center; padding: 30px 20px 10px; }
 .profile-thumb {
-    width: 60px; height: 60px;
+    width: 70px; height: 70px;
     border-radius: 50%;
-    border: 2px solid #00ffff;
-    box-shadow: 0 0 15px #00ffff;
-    margin-bottom: 10px;
-    animation: thumbPulse 2s infinite;
-}
-@keyframes thumbPulse {
-    0%, 100% { box-shadow: 0 0 5px #00ffff; }
-    50% { box-shadow: 0 0 20px #00ffff; }
+    border: 3px solid #ff0000;
+    box-shadow: 0 0 20px #ff0000;
+    margin-bottom: 15px;
 }
 .main-glow-title {
-    font-size: 28px;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-    margin-bottom: 20px;
+    font-size: 26px; font-weight: 900;
+    color: #fff; text-transform: uppercase; letter-spacing: 3px;
+    text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000;
 }
 
-.container { max-width: 920px; margin: auto; padding: 24px; }
+.container { max-width: 600px; margin: auto; padding: 20px; }
 
-/* VIDEO BOX NEON */
+/* VIDEO BOX */
 .video-box {
-  border: 2px solid #00ffff;
-  box-shadow: 0 0 20px rgba(0,255,255,.4);
-  margin-bottom: 32px;
+  border: 4px solid #00ffff;
+  border-radius: 25px;
+  box-shadow: 0 0 30px rgba(0,255,255,.5);
+  margin-bottom: 35px;
   position: relative;
-  width: 100%;
-  aspect-ratio: 16/9;
-  background: #000;
+  width: 100%; aspect-ratio: 16/9;
+  overflow: hidden; background: #000;
 }
 .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-/* TÍTULOS NEON FOSFORESCENTES */
-.neon-title {
-  display: flex;
-  align-items: center;
-  margin-bottom: 14px;
-  letter-spacing: 2px;
-  color: #00ffff;
-  text-transform: uppercase;
-  font-size: 18px;
-  text-shadow: 0 0 8px #00ffff, 0 0 15px #00ffff;
-  border-left: 3px solid #00ffff;
-  padding-left: 10px;
+/* NEON MODULES */
+.neon-module {
+  display: flex; align-items: center;
+  width: 100%; padding: 18px; margin-bottom: 12px;
+  background: rgba(0,0,0,0.4);
+  border-radius: 20px;
+  border: 4px solid #ff0000;
+  color: #ff0000;
+  text-transform: uppercase; font-weight: 900;
+  text-shadow: 0 0 10px #ff0000;
+  animation: pulseRed 2s infinite ease-in-out;
 }
+.blue-mod { border-color: #00ffff; color: #00ffff; text-shadow: 0 0 10px #00ffff; animation: pulseBlue 2s infinite ease-in-out; }
 
-.icon-hud {
-  width: 18px; height: 18px;
-  stroke: #00ffff; fill: none; margin-right: 12px;
-  filter: drop-shadow(0 0 5px #00ffff);
+@keyframes pulseRed { 0%, 100% { box-shadow: 0 0 10px #ff0000; } 50% { box-shadow: 0 0 25px #ff0000; } }
+@keyframes pulseBlue { 0%, 100% { box-shadow: 0 0 10px #00ffff; } 50% { box-shadow: 0 0 25px #00ffff; } }
+
+.desc-text { padding: 0 15px 20px; font-size: 14px; opacity: 0.8; }
+
+/* SEÇÃO DE PROMOÇÃO (ESTILO ARSENAL) */
+.promo-card {
+    border: 4px solid #ffcc00;
+    border-radius: 25px;
+    padding: 30px 20px;
+    text-align: center;
+    background: linear-gradient(145deg, #0a0a0a, #000);
+    box-shadow: 0 0 30px rgba(255, 204, 0, 0.3);
+    margin: 40px 0;
 }
+.promo-card h2 { color: #ffcc00; font-size: 28px; text-transform: uppercase; margin-bottom: 20px; text-shadow: 0 0 10px #ffcc00; }
+.promo-list { list-style: none; margin-bottom: 25px; text-align: left; display: inline-block; }
+.promo-list li { margin: 10px 0; font-size: 16px; display: flex; align-items: center; }
+.promo-list li::before { content: '✓'; color: #ffcc00; font-weight: bold; margin-right: 10px; }
 
-p { margin-bottom: 20px; opacity: .8; line-height: 1.6; font-size: 14px; }
+.price-box { margin: 20px 0; font-family: sans-serif; }
+.price-small { font-size: 18px; color: #fff; vertical-align: middle; }
+.price-main { font-size: 52px; font-weight: 900; color: #ffcc00; text-shadow: 0 0 15px #ffcc00; }
+.price-vista { font-size: 14px; color: #888; margin-top: 5px; }
 
-/* CTA COM ANIMAÇÃO DE CARREGAMENTO */
-.cta { text-align: center; margin: 48px 0; }
-.btn-unlock {
-  display: inline-block;
-  color: #00ffff;
-  background: transparent;
-  border: 2px solid #00ffff;
-  padding: 20px 40px;
-  text-decoration: none;
-  font-weight: bold;
-  letter-spacing: 2px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: 0.3s;
-  animation: ctaPulse 1.5s infinite;
+/* CTA BUTTON */
+.btn-final {
+    background: linear-gradient(to bottom, #ffcc00, #ff9900);
+    color: #000; border: none; padding: 20px 30px;
+    border-radius: 15px; font-weight: 900; font-size: 18px;
+    text-transform: uppercase; cursor: pointer; width: 100%;
+    box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4);
+    transition: 0.2s;
 }
-@keyframes ctaPulse {
-  0% { box-shadow: 0 0 5px #00ffff; }
-  50% { box-shadow: 0 0 25px #00ffff; }
-  100% { box-shadow: 0 0 5px #00ffff; }
-}
+.btn-final:active { transform: scale(0.98); }
 
-/* OVERLAY DE CARREGAMENTO */
-#loading-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.95);
-    z-index: 10000;
-    flex-direction: column; align-items: center; justify-content: center;
+/* OVERLAY */
+#overlay {
+    display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.98); z-index:10000; flex-direction:column; align-items:center; justify-content:center;
 }
-.progress-container { width: 250px; height: 2px; background: #111; margin-top: 20px; }
-.progress-bar { width: 0%; height: 100%; background: #00ffff; box-shadow: 0 0 10px #00ffff; }
-
+.bar-bg { width: 200px; height: 4px; background: #111; margin-top: 20px; border-radius: 10px; overflow: hidden; }
+.bar-fill { width: 0%; height: 100%; background: #ffcc00; }
 </style>
 </head>
 <body>
 
-<div id="boot-screen">INITIALIZING PROTOCOL...</div>
-
-<div id="loading-overlay">
-    <div style="color: #00ffff; letter-spacing: 5px; font-size: 12px;" id="status-text">CARREGANDO DADOS...</div>
-    <div class="progress-container"><div class="progress-bar" id="bar"></div></div>
+<div id="overlay">
+    <div style="color: #ffcc00; letter-spacing: 4px; font-size: 12px;">VALIDANDO PROTOCOLO...</div>
+    <div class="bar-bg"><div class="bar-fill" id="bar"></div></div>
 </div>
 
 <div class="header-elite">
-    <img src="https://imgur.com/PoxJsyD.png" class="profile-thumb" alt="Miniatura">
+    <img src="https://imgur.com/PoxJsyD.png" class="profile-thumb">
     <h1 class="main-glow-title">PROTOCOLO GOAT</h1>
 </div>
 
 <div class="container">
-
   <div class="video-box">
     <iframe src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
   </div>
 
-  <h2 class="neon-title">
-    <svg class="icon-hud" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>
-    STATUS: ATIVO
-  </h2>
-  <p>Nível de acesso restrito. Sistema operando em modo tático.</p>
+  <div class="neon-module">STATUS: ATIVO</div>
+  <p class="desc-text">Sistema operando em modo tático para alta retenção.</p>
 
-  <h2 class="neon-title">
-    <svg class="icon-hud" viewBox="0 0 24 24"><polygon points="12,2 22,7 22,17 12,22 2,17 2,7"/></svg>
-    CORE_PROTOCOL
-  </h2>
-  <p>Você não precisa de conteúdo. Precisa de protocolo. A maioria tenta. Poucos operam com estrutura.</p>
+  <div class="neon-module blue-mod">MODULE_01 — ACELERADOR VISUAL</div>
+  <p class="desc-text">Dominância estética e retenção subconsciente forçada.</p>
 
-  <h2 class="neon-title">MODULE_01 — ACELERADOR VISUAL</h2>
-  <p>Estruturas visuais de alto impacto que forçam a retenção subconsciente.</p>
+  <div class="promo-card">
+      <h2>Pack Goat</h2>
+      
+      <ul class="promo-list">
+          <li>Acesso Vitalício ao Protocolo</li>
+          <li>Acelerador Visual Advanced</li>
+          <li>Domínio total de I.A</li>
+      </ul>
 
-  <h2 class="neon-title">MODULE_02 — DOMÍNIO DA I.A</h2>
-  <p>Comandos de arquitetura precisos. Redução de ruído e aceleração de resultados.</p>
+      <div class="price-box">
+          <span style="text-decoration: line-through; color: #555; display: block; margin-bottom: 5px;">De R$ 97,00 por</span>
+          <span class="price-small">4x de</span>
+          <span class="price-main">R$ 8,14</span>
+          <div class="price-vista">ou 29,90 à vista</div>
+      </div>
 
-  <div class="cta">
-    <button class="btn-unlock" onclick="triggerAccess()">
-      ⏻ LIBERAR ACESSO AO PROTOCOLO
-    </button>
-    <small style="display:block; margin-top:15px; color:#555;">⦿ encrypted_connection • ⏣ entry_logged</small>
+      <button class="btn-final" onclick="triggerAccess()">
+          SIM, QUERO O PROTOCOLO!
+      </button>
+      
+      <p style="font-size: 12px; margin-top: 20px; color: #555;">Esta oferta encerrará em breve!</p>
   </div>
+
 </div>
 
 <script>
-// FUNÇÃO DE SOM (BIP TÁTICO)
 function playBip() {
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const oscillator = audioCtx.createOscillator();
-    const gainNode = audioCtx.createGain();
-    oscillator.type = 'square';
-    oscillator.frequency.setValueAtTime(880, audioCtx.currentTime); // Frequência do Bip
-    gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-    oscillator.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
-    oscillator.start();
-    oscillator.stop(audioCtx.currentTime + 0.1); // Duração do Bip
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'sine'; osc.frequency.setValueAtTime(1000, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.start(); osc.stop(audioCtx.currentTime + 0.1);
 }
 
 function triggerAccess() {
     playBip();
-    document.getElementById('loading-overlay').style.display = 'flex';
-    let width = 0;
-    const bar = document.getElementById('bar');
+    document.getElementById('overlay').style.display = 'flex';
+    let w = 0;
     const interval = setInterval(() => {
-        if (width >= 100) {
+        if (w >= 100) {
             clearInterval(interval);
             window.location.href = "https://pay.hotmart.com/L103950840Q";
         } else {
-            width += 2;
-            bar.style.width = width + '%';
+            w += 2; document.getElementById('bar').style.width = w + '%';
         }
-    }, 40);
+    }, 35);
 }
 </script>
 
