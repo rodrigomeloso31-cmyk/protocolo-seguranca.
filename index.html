@@ -1,142 +1,225 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>GOAT | SYSTEM ACTIVE</title>
-    <style>
-        :root { --p: #ff0000; --s: #00f2ff; --bg: #030303; --card: rgba(10, 10, 10, 0.9); }
-        
-        /* Efeito Matrix/Scanline */
-        body::before {
-            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 255, 0.02));
-            z-index: 1000; pointer-events: none; background-size: 100% 3px, 3px 100%;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protocolo GOAT</title>
 
-        *{margin:0;padding:0;box-sizing:border-box;font-family: 'Consolas', 'Courier New', monospace;}
-        body { background: var(--bg); color: #fff; line-height: 1.6; overflow-x: hidden; display: flex; flex-direction: column; align-items: center; }
+<style>
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-        /* BOOT SEQUENCE */
-        .boot-header { width: 100%; padding: 20px; border-bottom: 1px solid #1a1a1a; text-align: center; background: #000; }
-        .status-bar { font-size: 9px; color: var(--s); letter-spacing: 2px; margin-bottom: 10px; text-transform: uppercase; }
-        .logo { width: 50px; border-radius: 50%; border: 1px solid var(--p); box-shadow: 0 0 15px var(--p); margin-bottom: 10px; animation: glow 2s infinite; }
-        @keyframes glow { 0%, 100% { box-shadow: 0 0 5px var(--p); } 50% { box-shadow: 0 0 20px var(--p); } }
-        
-        .main-headline { font-size: 20px; font-weight: 900; margin: 15px 0 5px; }
-        .micro-intro { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 1px; }
+/* BODY */
+body {
+  background: #000;
+  color: #e5e5e5;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: crosshair;
+}
 
-        /* CORE MESSAGE */
-        .section { width: 90%; max-width: 400px; margin: 30px 0; position: relative; }
-        .core-text { font-size: 15px; color: #ccc; text-align: left; border-left: 2px solid var(--p); padding-left: 15px; }
-        .highlight { color: var(--p); font-weight: bold; }
+/* BOOT SYSTEM */
+#boot-screen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  color: #00ffff;
+  font-family: monospace;
+  letter-spacing: 2px;
+  animation: bootFade 1.6s ease forwards;
+}
 
-        /* VIDEO */
-        .video-gate { width: 92%; max-width: 380px; aspect-ratio: 16/9; border: 1px solid #333; margin: 20px 0; background: #000; position: relative; }
-        .video-gate::before { content: "ENCRYPTED FEED"; position: absolute; top: -10px; left: 10px; background: #000; padding: 0 5px; font-size: 8px; color: var(--s); }
+@keyframes bootFade {
+  0% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
 
-        /* WHY THIS WORKS */
-        .tech-box { background: var(--card); border: 1px solid #1a1a1a; padding: 25px; border-radius: 4px; }
-        .tech-box h2 { font-size: 13px; color: var(--s); letter-spacing: 3px; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 5px; }
-        .tech-box p { font-size: 13px; color: #888; margin-bottom: 10px; }
+/* CONTAINER */
+.container {
+  max-width: 920px;
+  margin: auto;
+  padding: 24px;
+}
 
-        /* MODULES */
-        .module-grid { display: grid; gap: 15px; width: 90%; }
-        .module { border: 1px solid var(--s); padding: 15px; background: rgba(0, 242, 255, 0.02); position: relative; }
-        .module h3 { font-size: 12px; color: var(--s); margin-bottom: 5px; }
-        .module p { font-size: 11px; color: #aaa; }
-        .module::after { content: "ACTIVE"; position: absolute; top: 5px; right: 5px; font-size: 7px; opacity: 0.5; }
+/* VIDEO BOX */
+.video-box {
+  border: 1px solid #00ffff;
+  box-shadow: 0 0 18px rgba(0,255,255,.6);
+  margin-bottom: 32px;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9; /* Mantém a proporção do vídeo */
+  background: #000;
+}
 
-        /* FINAL GATE */
-        .final-gate { text-align: center; border: 1px dashed var(--p); padding: 20px; margin: 40px 0; }
-        .final-gate p { font-size: 12px; color: #666; }
+.video-box iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
-        /* CTA UNLOCK */
-        .cta-area { position: fixed; bottom: 0; width: 100%; background: linear-gradient(transparent, #000 30%); padding: 30px 0; display: flex; flex-direction: column; align-items: center; z-index: 2000; }
-        .btn-unlock { 
-            width: 85%; max-width: 320px; background: none; border: 2px solid var(--s); color: var(--s); 
-            padding: 18px; font-weight: bold; font-size: 14px; text-transform: uppercase; 
-            box-shadow: 0 0 15px var(--s); cursor: pointer; animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
-        .btn-copy { font-size: 9px; color: #444; margin-top: 10px; letter-spacing: 1px; }
+/* ICONES HUD */
+.icon-hud {
+  width: 20px;
+  height: 20px;
+  stroke: #00ffff;
+  fill: none;
+  margin-right: 10px;
+  filter: drop-shadow(0 0 6px #00ffff);
+  animation: hudPulse 2.4s infinite ease-in-out;
+}
 
-        /* MICROCOPY HUD */
-        .hud-tag { position: absolute; font-size: 7px; color: #222; text-transform: uppercase; }
+@keyframes hudPulse {
+  0%,100% { opacity: .6; }
+  50% { opacity: 1; }
+}
 
-        #loading { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:9999; flex-direction:column; align-items:center; justify-content:center; }
-        .load-bar { width: 150px; height: 1px; background: #111; margin-top: 10px; }
-        .load-fill { width: 0; height: 100%; background: var(--p); animation: fill 2s forwards; }
-        @keyframes fill { to { width: 100%; } }
-    </style>
+/* TITULOS */
+h1, h2 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+}
+
+.scan-title {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-title::after {
+  content: "";
+  position: absolute;
+  top: -120%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent, rgba(0,255,255,.25), transparent);
+  animation: scanOnce 1.2s ease-out forwards;
+}
+
+@keyframes scanOnce {
+  from { top: -120%; }
+  to { top: 120%; }
+}
+
+/* TEXTO */
+p {
+  margin-bottom: 20px;
+  opacity: .85;
+  line-height: 1.5;
+}
+
+/* CTA */
+.cta {
+  text-align: center;
+  margin: 48px 0;
+}
+
+.cta a {
+  display: inline-block;
+  color: #00ffff;
+  border: 1px solid #00ffff;
+  padding: 18px 32px;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+  animation: ctaPulse 1.2s infinite ease-in-out;
+}
+
+@keyframes ctaPulse {
+  0% { box-shadow: 0 0 10px rgba(0,255,255,.6); }
+  50% { box-shadow: 0 0 26px rgba(0,255,255,1); }
+  100% { box-shadow: 0 0 10px rgba(0,255,255,.6); }
+}
+
+.cta small {
+  display: block;
+  margin-top: 10px;
+  opacity: .7;
+  font-size: 12px;
+}
+</style>
 </head>
+
 <body>
 
-<div id="loading">
-    <div style="color:var(--p); font-size: 10px; letter-spacing: 3px;">BYPASSING SECURITY...</div>
-    <div class="load-bar"><div class="load-fill"></div></div>
+<div id="boot-screen">
+  INITIALIZING PROTOCOL...
 </div>
 
-<div class="boot-header">
-    <div class="status-bar">STATUS: ATIVO | ACESSO: RESTRITO</div>
-    <img src="https://imgur.com/PoxJsyD.png" class="logo">
-    <h1 class="main-headline">Protocolo <span style="color:var(--p)">GOAT</span></h1>
-    <div class="micro-intro">Alguns jogam o jogo. Outros constroem o sistema.</div>
+<div class="container">
+
+  <div class="video-box">
+    <iframe 
+        src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&rel=0&modestbranding=1" 
+        frameborder="0" 
+        allow="autoplay; encrypted-media" 
+        allowfullscreen>
+    </iframe>
+  </div>
+
+  <h2 class="scan-title">
+    <svg class="icon-hud" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="12" cy="12" r="8" fill="none"/>
+    </svg>
+    STATUS DO SISTEMA: ATIVO
+  </h2>
+
+  <p>Nível de acesso restrito.</p>
+
+  <h1 class="scan-title">
+    <svg class="icon-hud" viewBox="0 0 24 24">
+      <polygon points="12,2 22,7 22,17 12,22 2,17 2,7"/>
+    </svg>
+    Você não precisa de conteúdo. Precisa de protocolo.
+  </h1>
+
+  <p>A maioria tenta. Poucos operam com estrutura.</p>
+
+  <h2 class="scan-title">
+    <svg class="icon-hud" viewBox="0 0 24 24">
+      <rect x="4" y="4" width="6" height="6"/>
+      <rect x="14" y="4" width="6" height="6"/>
+      <rect x="4" y="14" width="6" height="6"/>
+      <rect x="14" y="14" width="6" height="6"/>
+    </svg>
+    MODULE_01 — ACELERADOR VISUAL
+  </h2>
+
+  <p>Estruturas visuais que capturam atenção sem esforço.</p>
+
+  <h2 class="scan-title">
+    <svg class="icon-hud" viewBox="0 0 24 24">
+      <rect x="4" y="4" width="6" height="6"/>
+      <rect x="14" y="4" width="6" height="6"/>
+      <rect x="4" y="14" width="6" height="6"/>
+      <rect x="14" y="14" width="6" height="6"/>
+    </svg>
+    MODULE_02 — DOMÍNIO DA I.A
+  </h2>
+
+  <p>Comandos precisos. Menos erro. Mais controle.</p>
+
+  <div class="cta">
+    <a href="https://pay.hotmart.com/L103950840Q">
+      ⏻ LIBERAR ACESSO AO PROTOCOLO
+    </a>
+    <small>⦿ system online • ⏣ acesso pronto</small>
+  </div>
+
 </div>
-
-<div class="section core-text">
-    Você já tentou crescer. Postou. Estudou. Copiou estratégias.<br><br>
-    E mesmo assim, nada se sustentou.<br><br>
-    Isso acontece porque a maioria opera no <span class="highlight">modo tentativa</span>. Sem estrutura. Sem lógica. Sem controle.<br><br>
-    O Protocolo GOAT não é sobre produzir mais. É sobre <span class="highlight">operar</span> como quem entende o sistema.
-</div>
-
-<div class="video-gate">
-    <iframe src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&rel=0&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-</div>
-
-<div class="section tech-box">
-    <h2>POR QUE ISSO FUNCIONA</h2>
-    <p>Porque não depende de motivação. Depende de <strong>arquitetura</strong>.</p>
-    <p>O Protocolo GOAT organiza decisão, atenção e execução em um único fluxo. Sem improviso. Sem excesso. Sem ruído.</p>
-    <p style="font-size: 11px; color: #444; margin-top: 15px;">ENTRY LOGGED: 0x88219</p>
-</div>
-
-<div class="module-grid">
-    <div class="module">
-        <h3>MODULE_01 — ACELERADOR VISUAL</h3>
-        <p>Domine retenção usando estruturas visuais de alto impacto. Atenção não se pede. Se captura.</p>
-    </div>
-    <div class="module">
-        <h3>MODULE_02 — DOMÍNIO DA I.A</h3>
-        <p>Prompts estratégicos para reduzir custo mental e aumentar precisão. Menos tentativa. Mais controle.</p>
-    </div>
-</div>
-
-<div class="section" style="color: #555; font-size: 11px; text-align: center;">
-    Este não é um material aberto. Não é para curiosos. Não é para quem só consome.
-</div>
-
-<div class="final-gate">
-    <div style="color: var(--p); font-size: 12px; font-weight: bold; margin-bottom: 10px;">🚨 FINAL_GATE</div>
-    <p>Se você sair agora, tudo continua igual. Mesmos erros. Mesma estagnação. Entrar significa assumir controle. Não entrar também é uma decisão.</p>
-</div>
-
-<div style="height: 140px;"></div>
-
-<div class="cta-area">
-    <button class="btn-unlock" onclick="unlock()">🔓 LIBERAR ACESSO AO PROTOCOLO</button>
-    <div class="btn-copy">Acesso imediato • Conteúdo direto • Sem exposição pública</div>
-</div>
-
-<script>
-    function unlock() {
-        document.getElementById('loading').style.display = 'flex';
-        setTimeout(() => {
-            window.location.href = "https://pay.hotmart.com/L103950840Q";
-        }, 2200);
-    }
-</script>
 
 </body>
 </html>
