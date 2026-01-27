@@ -4,42 +4,56 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <style>
+/* Reset para ocupar a tela inteira */
 *{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
-body{background:#000;color:#fff;display:flex;flex-direction:column;align-items:center;overflow-x:hidden}
-.h{text-align:center;padding:20px;width:100%}
-.l{width:65px;height:65px;border-radius:50%;border:2px solid #f00;box-shadow:0 0 20px #f00}
+html, body { height: 100%; overflow: hidden; background: #000; color: #fff; }
+body{display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding: 10px 0;}
 
-/* ESTILO AZUL NEON QUE VOCÊ PEDIU */
-.box-neon{width:92%;max-width:400px;padding:18px;border:2.5px solid #00f2ff;border-radius:30px;margin-bottom:15px;display:flex;align-items:center;gap:12px;box-shadow:0 0 15px #00f2ff;animation:pB 2s infinite}
-@keyframes pB{0%,100%{box-shadow:0 0 5px #00f2ff}50%{box-shadow:0 0 20px #00f2ff}}
-.box-neon h2{color:#00f2ff;font-size:14px;text-transform:uppercase;text-shadow:0 0 10px #00f2ff}
-.box-neon p{font-size:11px;color:#fff}
+/* Cabeçalho compacto */
+.h{text-align:center; flex: 0 1 auto;}
+.l{width:45px;height:45px;border-radius:50%;border:1.5px solid red;box-shadow:0 0 10px red;object-fit:cover}
+.t{font-size:18px;font-weight:700;margin-top:5px}
 
-/* VÍDEO SHORTS CORRIGIDO */
-.v-box{width:92%;max-width:380px;aspect-ratio:9/16;max-height:500px;border:2px solid #333;border-radius:20px;overflow:hidden;margin-bottom:20px;position:relative;background:#111}
+/* Container do Vídeo Reduzido */
+.v-box{width:85%; max-width:300px; aspect-ratio:9/16; max-height:35vh; border:2px solid #333; border-radius:15px; overflow:hidden; position:relative; background:#111; flex: 0 1 auto;}
 .v-box iframe{position:absolute;top:0;left:0;width:100%;height:100%}
 
-/* BOTÃO VERMELHO NEON */
-.btn{width:92%;max-width:400px;background:none;color:#f00;padding:22px;font-size:16px;font-weight:900;border-radius:50px;border:3px solid #f00;text-transform:uppercase;box-shadow:0 0 15px #f00;animation:pR 1.5s infinite;margin-top:10px}
-@keyframes pR{0%,100%{transform:scale(1)}50%{transform:scale(1.05);box-shadow:0 0 25px #f00}}
+/* Boxes Azul Neon Menores */
+.c{width:90%; max-width:350px; display:flex; flex-direction:column; gap:8px; flex: 0 1 auto;}
+.s{width:100%; padding:10px; border:2px solid #00f2ff; border-radius:20px; display:flex; align-items:center; gap:10px; box-shadow:0 0-8px #00f2ff; animation:pB 2s infinite}
+@keyframes pB{0%,100%{box-shadow:0 0 3px #00f2ff}50%{box-shadow:0 0 12px #00f2ff}}
+.s h2{color:#00f2ff; font-size:12px; text-transform:uppercase}
+.s p{font-size:10px; color:#fff}
+.icon{font-size:18px}
 
+/* Botão Próximo ao Vídeo */
+.btn{width:90%; max-width:350px; background:none; color:#f00; padding:15px; font-size:14px; font-weight:900; border-radius:40px; border:2.5px solid #f00; text-transform:uppercase; box-shadow:0 0 10px #f00; animation:pR 1.5s infinite; flex: 0 1 auto;}
+@keyframes pR{0%,100%{transform:scale(1)}50%{transform:scale(1.03);box-shadow:0 0 20px #f00}}
+
+/* Loading */
 #o{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99;flex-direction:column;align-items:center;justify-content:center}
-.b{width:70%;height:4px;background:#111;border-radius:10px;margin-top:20px;overflow:hidden;border:1px solid red}.g{width:0;height:100%;background:red;animation:load 3s forwards}@keyframes load{to{width:100%}}
+.b{width:70%;height:3px;background:#111;margin-top:15px;overflow:hidden;border:1px solid red}.g{width:0;height:100%;background:red;animation:load 2s forwards}@keyframes load{to{width:100%}}
 </style>
 </head>
 <body>
-<div id="o"><div style="color:red;font-size:12px;text-align:center">ATUALIZANDO...<div class="b"><div class="g"></div></div></div></div>
-<div class="h"><img src="https://imgur.com/PoxJsyD.png" class="l"><div style="font-size:24px;font-weight:700;margin-top:10px">Protocolo <span style="color:red">Goat</span></div></div>
+<div id="o"><div style="color:red;font-size:10px">PROCESSANDO...<div class="b"><div class="g"></div></div></div></div>
 
-<div class="v-box">
-    <iframe src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&rel=0&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<div class="h">
+    <img src="https://imgur.com/PoxJsyD.png" class="l">
+    <div class="t">Protocolo <span style="color:red">Goat</span></div>
 </div>
 
-<div class="box-neon"><span style="font-size:22px">🛡️</span><div><h2>Acelerador Visual</h2><p>Domine a retenção com alto impacto.</p></div></div>
-<div class="box-neon"><span style="font-size:22px">🗝️</span><div><h2 style="color:#fff;text-shadow:none">Domínio da I.A</h2><p>Use prompts para baixar seu CPA.</p></div></div>
+<div class="v-box">
+    <iframe src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&rel=0" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe>
+</div>
 
-<button class="btn" onclick="st()">LIBERAR ACESSO AO PROTOCOLO</button>
+<div class="c">
+    <div class="s"><span class="icon">🛡️</span><div><h2>Acelerador Visual</h2><p>Domine a retenção com impacto.</p></div></div>
+    <div class="s"><span class="icon">🗝️</span><div><h2 style="color:#fff">Domínio da I.A</h2><p>Prompts para baixar seu CPA.</p></div></div>
+</div>
 
-<script>function st(){document.getElementById('o').style.display='flex';setTimeout(()=>{window.location.assign("https://pay.hotmart.com/L103950840Q")},3500)}</script>
+<button class="btn" onclick="st()">LIBERAR ACESSO</button>
+
+<script>function st(){document.getElementById('o').style.display='flex';setTimeout(()=>{window.location.assign("https://pay.hotmart.com/L103950840Q")},2500)}</script>
 </body>
 </html>
