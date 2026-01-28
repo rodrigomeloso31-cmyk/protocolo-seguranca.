@@ -23,11 +23,18 @@
     .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
     #unmute-trigger { display: block; margin: 15px auto; background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 12px 25px; border-radius: 5px; cursor: pointer; font-size: 11px; font-weight: bold; text-transform: uppercase; }
 
-    /* MOCKUP VISUAL (O QUE ELE LEVA) */
+    /* IMAGENS EM GAVETA (GRID DE ATRAÇÃO) */
+    .drawer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 30px 0; }
+    .drawer-item { background: var(--card); border: 1px solid #1a1a1a; border-radius: 10px; overflow: hidden; }
+    .drawer-img { width: 100%; height: 150px; object-fit: cover; opacity: 0.8; transition: 0.3s; }
+    .drawer-item:hover .drawer-img { opacity: 1; }
+    .drawer-caption { font-size: 10px; padding: 10px; color: var(--accent); font-weight: bold; text-transform: uppercase; }
+
+    /* MOCKUP VISUAL */
     .mockup-area { margin: 40px 0; padding: 20px; background: linear-gradient(180deg, #050505 0%, #0d0d0d 100%); border-radius: 15px; border: 1px solid #111; }
     .mockup-img { width: 100%; max-width: 400px; filter: drop-shadow(0 0 20px rgba(0,255,153,0.2)); }
 
-    /* NOVOS MÓDULOS DETALHADOS */
+    /* MÓDULOS REFINADOS */
     .module-box { text-align: left; background: var(--card); border: 1px solid #1a1a1a; padding: 25px; border-radius: 15px; margin-bottom: 20px; position: relative; overflow: hidden; }
     .module-tag { position: absolute; top: 0; right: 0; background: var(--accent); color: #000; font-size: 10px; padding: 5px 15px; font-weight: bold; border-bottom-left-radius: 10px; }
     .module-box h3 { color: var(--accent); margin-bottom: 10px; font-size: 18px; text-transform: uppercase; }
@@ -65,44 +72,59 @@
   <div class="section">
     <img src="https://files.imagetourl.net/uploads/1769555414520-93412662-bce8-4561-87c7-8f8b0745bb1e.jpeg" class="profile-img">
     <h1>Protocolo GOAT</h1>
-    <p class="subtitle">O sistema invisível que transforma seguidores comuns em vendas diárias usando IA e automação.</p>
+    <p class="subtitle">Descubra o método matemático para transformar <b>visualizações em lucro real</b> usando a tecnologia mais avançada de 2026.</p>
 
     <div class="video-container">
       <iframe id="goatVideo" src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&mute=1&controls=0&rel=0&enablejsapi=1" frameborder="0"></iframe>
     </div>
-    <button id="unmute-trigger" onclick="enableAudio()">[ CLIQUE PARA ATIVAR O SOM ]</button>
+    <button id="unmute-trigger" onclick="enableAudio()">[ ATIVAR COMANDOS DE ÁUDIO ]</button>
   </div>
 
   <div class="section">
-    <h2 style="color:var(--accent); font-size: 14px; letter-spacing: 3px; margin-bottom: 20px;">O QUE VOCÊ VAI RECEBER:</h2>
-    <div class="mockup-area">
-        <img src="https://cdn.pixabay.com/photo/2018/05/08/08/44/artificial-intelligence-3382507_1280.png" class="mockup-img" alt="Mockup Protocolo GOAT">
+    <h2 style="color:var(--accent); font-size: 14px; letter-spacing: 3px; margin-bottom: 20px;">O QUE VOCÊ VAI DOMINAR:</h2>
+    
+    <div class="drawer-grid">
+      <div class="drawer-item">
+        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=400" class="drawer-img">
+        <div class="drawer-caption">Alcance Viral</div>
+      </div>
+      <div class="drawer-item">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400" class="drawer-img">
+        <div class="drawer-caption">Lucro em I.A</div>
+      </div>
     </div>
 
     <div class="module-box">
-        <div class="module-tag">MÓDULO 01</div>
-        <h3>Acelerador Visual 2.0</h3>
-        <p>Aprenda a criar artes que interrompem o scroll. O segredo das cores e fontes que hipnotizam o olhar do seu cliente em 2 segundos.</p>
+        <div class="module-tag">ESTRATÉGIA</div>
+        <h3>O Algoritmo Decifrado</h3>
+        <p>Pare de postar e torcer. Aprenda a engenharia reversa que força o Instagram a entregar seu conteúdo para quem realmente tem dinheiro para comprar.</p>
     </div>
 
     <div class="module-box">
-        <div class="module-tag">MÓDULO 02</div>
-        <h3>Engenharia Advanced</h3>
-        <p>Como estruturar o seu perfil para converter visitantes em compradores no automático, sem precisar implorar por vendas.</p>
+        <div class="module-tag">EXECUÇÃO</div>
+        <h3>Design que Converte</h3>
+        <p>Não é sobre ser "bonito", é sobre ser hipnótico. Use padrões visuais de I.A. para prender a atenção do seu cliente no primeiro segundo de scroll.</p>
     </div>
 
     <div class="module-box">
-        <div class="module-tag">MÓDULO 03</div>
-        <h3>Domínio de I.A.</h3>
-        <p>As ferramentas secretas que eu uso para criar conteúdo de um mês inteiro em apenas 1 hora de trabalho.</p>
+        <div class="module-tag">AUTOMAÇÃO</div>
+        <h3>Vendas no Invisível</h3>
+        <p>Configure robôs de atendimento que vendem enquanto você dorme, transformando cada direct em um boleto pago.</p>
     </div>
 
     <div class="bonus-card">
-        <span style="font-size: 20px;">🎁</span>
+        <span style="font-size: 20px;">🔥</span>
         <div style="text-align: left;">
-            <div style="font-size: 13px; font-weight: bold; color: var(--accent);">BÔNUS: Scripts de Venda High-Ticket</div>
+            <div style="font-size: 13px; font-weight: bold; color: var(--accent);">BÔNUS: Pack de Prompts Inéditos</div>
             <div class="bonus-price">De R$ 197,00 por R$ 0,00</div>
         </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top: 0;">
+    <div class="mockup-area">
+        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=600" class="mockup-img" alt="I.A Interface">
+        <p style="font-size: 11px; margin-top: 15px; color: #555;">INTERAÇÃO COM O SISTEMA GOAT V.2.6</p>
     </div>
   </div>
 
@@ -112,7 +134,7 @@
         <img src="https://i.pravatar.cc/150?u=1" class="user-avatar">
         <div class="user-name">felipe_rodrigues.ia ✔</div>
       </div>
-      <div class="user-comment">"O conteúdo do módulo 2 é sacanagem. Apliquei no meu perfil e o alcance dobrou em 3 dias. Vale cada centavo."</div>
+      <div class="user-comment">"Nunca vi nada igual. Apliquei os comandos do módulo 2 e meu faturamento dobrou em 15 dias. O protocolo é real."</div>
     </div>
 
     <div class="testimonial-card">
@@ -120,21 +142,21 @@
         <img src="https://i.pravatar.cc/150?u=8" class="user-avatar">
         <div class="user-name">beatriz.digital_</div>
       </div>
-      <div class="user-comment">"Slk, finalmente alguém que ensina a usar IA sem enrolação. O PDF final é o mapa da mina."</div>
+      <div class="user-comment">"A parte de automação é insana. Eu não tenho mais que responder direct, o sistema faz tudo sozinho."</div>
     </div>
   </div>
 
   <div class="section price-area">
-    <div style="font-size: 12px; color: #ff4444; font-weight: bold; margin-bottom: 10px;">⚠️ OFERTA POR TEMPO LIMITADO</div>
+    <div style="font-size: 12px; color: #ff4444; font-weight: bold; margin-bottom: 10px;">⚠️ ACESSO IMEDIATO DISPONÍVEL</div>
     <div class="installment">6x de</div>
     <div class="value">R$ 8,99</div>
     <div class="cash">ou à vista R$ 47,90</div>
     <button class="btn" onclick="startRedirect()">Ativar o Protocolo Agora</button>
-    <p style="font-size: 10px; color: #444; margin-top: 20px;">Pagamento Seguro • Acesso Imediato • Garantia de 7 Dias</p>
+    <p style="font-size: 10px; color: #444; margin-top: 20px;">Pagamento Seguro • Satisfação Garantida • Acesso Vitalício</p>
   </div>
 
   <div id="loader">
-    <div style="color: var(--accent); font-family: monospace; font-size: 12px; letter-spacing: 2px;">AUTENTICANDO_ACESSO_SEGURO...</div>
+    <div style="color: var(--accent); font-family: monospace; font-size: 12px; letter-spacing: 2px;">SINCRONIZANDO_DADOS_...</div>
     <div style="width: 150px; height: 1px; background: #111; margin-top: 20px;"><div style="height: 100%; background: var(--accent); width: 0%;" id="load-fill"></div></div>
   </div>
 
