@@ -15,7 +15,6 @@
       overflow-x: hidden;
     }
 
-    /* MINIATURA CENTRALIZADA */
     .profile-img {
       width: 90px; height: 90px;
       border-radius: 50%;
@@ -41,7 +40,6 @@
       padding: 0 20px;
     }
 
-    /* CONTAINER DO VÍDEO */
     .video-wrapper {
       max-width: 550px;
       margin: 0 auto;
@@ -62,7 +60,6 @@
       pointer-events: none;
     }
 
-    /* BOTÃO DE SOM ESTILO COMANDO */
     #unmute-trigger {
       display: block;
       margin: 15px auto 30px;
@@ -76,7 +73,7 @@
       letter-spacing: 1px;
     }
 
-    /* MÓDULOS DISCRETOS */
+    /* MÓDULOS */
     .modules-list {
       max-width: 500px;
       margin: 40px auto;
@@ -94,7 +91,39 @@
       justify-content: space-between;
     }
 
-    /* PDF FAKE INTERATIVO */
+    /* SEÇÃO DE PROVA SOCIAL (DEPOIMENTOS) */
+    .testimonials {
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 0 25px;
+      text-align: left;
+    }
+    .testimonial-card {
+      background: #0a0a0a;
+      border: 1px solid #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .user-info { display: flex; align-items: center; margin-bottom: 10px; }
+    .user-avatar { width: 40px; height: 40px; border-radius: 50%; background: #222; margin-right: 12px; }
+    .user-name { font-size: 14px; font-weight: bold; color: #00ff99; }
+    .user-comment { font-size: 13px; color: #999; line-height: 1.4; font-style: italic; }
+
+    /* NOTIFICAÇÃO DE VENDA FLUTUANTE */
+    #sales-pop {
+      position: fixed; bottom: 20px; left: 20px;
+      background: #fff; color: #000;
+      padding: 12px 20px; border-radius: 10px;
+      display: flex; align-items: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      z-index: 1000; transition: 0.5s;
+      transform: translateX(-150%);
+      font-size: 12px; font-weight: bold;
+    }
+    #sales-pop img { width: 30px; margin-right: 10px; }
+
+    /* PDF FAKE */
     .pdf-loading {
       max-width: 450px;
       margin: 30px auto;
@@ -105,13 +134,12 @@
     .bar-bg { width: 100%; height: 2px; background: #111; margin-top: 5px; }
     .bar-fill { height: 100%; background: #00ff99; width: 0%; transition: 0.3s; }
 
-    /* ÁREA DE PREÇO */
+    /* PREÇO */
     .price-area { margin-top: 50px; padding-bottom: 60px; }
     .installment { color: #888; font-size: 16px; margin-bottom: 5px; }
     .value { font-size: 3.5em; font-weight: 900; color: #fff; margin-bottom: 5px; }
     .cash { color: #444; font-size: 13px; margin-bottom: 30px; }
 
-    /* BOTÃO PRINCIPAL PULSANTE */
     .btn {
       display: inline-block;
       padding: 20px 50px;
@@ -134,7 +162,6 @@
       100% { box-shadow: 0 0 15px #00ff99; transform: scale(1); }
     }
 
-    /* OVERLAY REDIRECT */
     #loader {
       display: none; position: fixed; top: 0; left: 0;
       width: 100%; height: 100%; background: #000;
@@ -144,6 +171,11 @@
   </style>
 </head>
 <body>
+
+  <div id="sales-pop">
+    <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="check">
+    <div><span id="pop-name">Gabriel S.</span> acabou de ativar o protocolo!</div>
+  </div>
 
   <img src="https://files.imagetourl.net/uploads/1769555414520-93412662-bce8-4561-87c7-8f8b0745bb1e.jpeg" class="profile-img">
 
@@ -163,6 +195,26 @@
     <div class="module-card"><span>Módulo 03: Domínio de IA</span> <span>OK</span></div>
   </div>
 
+  <div class="testimonials">
+    <h3 style="color:#444; font-size: 12px; margin-bottom: 20px; letter-spacing: 2px;">FEEDBACK_DOS_USUÁRIOS</h3>
+    
+    <div class="testimonial-card">
+      <div class="user-info">
+        <div class="user-avatar" style="background: url('https://randomuser.me/api/portraits/men/32.jpg') center/cover;"></div>
+        <div class="user-name">Lucas Ferreira</div>
+      </div>
+      <div class="user-comment">"Eu achei que era só mais um curso, mas as automações de IA mudaram meu jogo. Recuperei o investimento na primeira semana."</div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="user-info">
+        <div class="user-avatar" style="background: url('https://randomuser.me/api/portraits/women/44.jpg') center/cover;"></div>
+        <div class="user-name">Mariana Costa</div>
+      </div>
+      <div class="user-comment">"O design que aprendi no módulo 02 parou meu Instagram. As vendas vieram no automático."</div>
+    </div>
+  </div>
+
   <div class="pdf-loading">
     <div id="status-text">PREPARANDO_PROTOCOLO_PERSONALIZADO.PDF...</div>
     <div class="bar-bg"><div class="bar-fill" id="bar"></div></div>
@@ -173,7 +225,7 @@
     <div class="value">R$ 8,99</div>
     <div class="cash">ou à vista R$ 47,90</div>
 
-    <button class="btn" onclick="startRedirect()">Ativar o Protocolo</button>
+    <button class="btn" onclick="startRedirect()">Ativar o Protocolo Agora</button>
   </div>
 
   <div id="loader">
@@ -192,16 +244,25 @@
       document.getElementById('unmute-trigger').style.display = 'none';
     }
 
-    // PDF FAKE PROGRESS
+    // SALES POPUP ENGINE
+    const names = ["Ricardo M.", "Ana Paula", "Bruno Silva", "Carla J.", "Felipe T.", "Juliana O."];
+    function showSales() {
+        const pop = document.getElementById('sales-pop');
+        const nameSpan = document.getElementById('pop-name');
+        nameSpan.innerText = names[Math.floor(Math.random() * names.length)];
+        
+        pop.style.transform = "translateX(0)";
+        setTimeout(() => {
+            pop.style.transform = "translateX(-150%)";
+        }, 4000);
+    }
+    setInterval(showSales, 12000); // Aparece a cada 12 segundos
+
+    // PDF PROGRESS
     let p = 0;
-    const interval = setInterval(() => {
-      if(p < 100) { 
-        p += 0.5; 
-        document.getElementById('bar').style.width = p + '%'; 
-      } else {
-        document.getElementById('status-text').innerText = 'PROTOCOLO_LIBERADO_PARA_DOWNLOAD';
-        clearInterval(interval);
-      }
+    setInterval(() => {
+      if(p < 100) { p += 0.5; document.getElementById('bar').style.width = p + '%'; }
+      else { document.getElementById('status-text').innerText = 'PROTOCOLO_LIBERADO'; }
     }, 100);
 
     // REDIRECT
