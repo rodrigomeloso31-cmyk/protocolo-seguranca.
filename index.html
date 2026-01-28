@@ -2,241 +2,143 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Protocolo GOAT | Ativação</title>
+  <title>Protocolo GOAT | Acesso Vitalício</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* BASE ESTILO CLEAN NEON */
+    :root { --accent: #00ff99; --bg: #050505; --card: #0d0d0d; --text-dim: #999; }
+    
     body {
-      margin: 0;
-      font-family: 'Inter', Arial, sans-serif;
-      background: #050505;
-      color: #fff;
-      text-align: center;
-      overflow-x: hidden;
+      margin: 0; font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg); color: #fff; text-align: center; overflow-x: hidden;
     }
 
-    .profile-img {
-      width: 90px; height: 90px;
-      border-radius: 50%;
-      border: 2px solid #00ff99;
-      margin-top: 40px;
-      box-shadow: 0 0 15px rgba(0, 255, 153, 0.3);
-      object-fit: cover;
-    }
+    /* HEADER SECTIONS */
+    .section { padding: 60px 20px; max-width: 600px; margin: auto; }
+    .profile-img { width: 90px; height: 90px; border-radius: 50%; border: 2px solid var(--accent); margin-top: 20px; object-fit: cover; }
+    h1 { font-size: 2.2em; text-shadow: 0 0 20px var(--accent); margin-top: 15px; text-transform: uppercase; letter-spacing: 3px; }
+    .subtitle { color: #ccc; font-size: 1.1em; line-height: 1.4; margin-bottom: 30px; }
 
-    h1 {
-      font-size: 2.2em;
-      text-shadow: 0 0 20px #00ff99;
-      margin-top: 15px;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-    }
+    /* VIDEO AREA */
+    .video-container { position: relative; width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 12px; overflow: hidden; border: 1px solid #1a1a1a; }
+    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+    #unmute-trigger { display: block; margin: 15px auto; background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 12px 25px; border-radius: 5px; cursor: pointer; font-size: 11px; font-weight: bold; text-transform: uppercase; }
 
-    .subtitle {
-      max-width: 600px;
-      margin: 10px auto 30px;
-      color: #ccc;
-      font-size: 1.1em;
-      padding: 0 20px;
-    }
+    /* MOCKUP VISUAL (O QUE ELE LEVA) */
+    .mockup-area { margin: 40px 0; padding: 20px; background: linear-gradient(180deg, #050505 0%, #0d0d0d 100%); border-radius: 15px; border: 1px solid #111; }
+    .mockup-img { width: 100%; max-width: 400px; filter: drop-shadow(0 0 20px rgba(0,255,153,0.2)); }
 
-    .video-wrapper {
-      max-width: 550px;
-      margin: 0 auto;
-      padding: 0 15px;
-    }
-    .video-container {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16/9;
-      background: #000;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid #1a1a1a;
-    }
-    .video-container iframe {
-      position: absolute; top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-    }
+    /* NOVOS MÓDULOS DETALHADOS */
+    .module-box { text-align: left; background: var(--card); border: 1px solid #1a1a1a; padding: 25px; border-radius: 15px; margin-bottom: 20px; position: relative; overflow: hidden; }
+    .module-tag { position: absolute; top: 0; right: 0; background: var(--accent); color: #000; font-size: 10px; padding: 5px 15px; font-weight: bold; border-bottom-left-radius: 10px; }
+    .module-box h3 { color: var(--accent); margin-bottom: 10px; font-size: 18px; text-transform: uppercase; }
+    .module-box p { color: #888; font-size: 14px; line-height: 1.5; margin: 0; }
 
-    #unmute-trigger {
-      display: block;
-      margin: 15px auto 30px;
-      background: transparent;
-      color: #00ff99;
-      border: 1px solid #00ff99;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 12px;
-      letter-spacing: 1px;
-    }
+    /* BÔNUS STACK */
+    .bonus-card { border: 1px dashed var(--accent); padding: 15px; border-radius: 10px; margin-top: 10px; display: flex; align-items: center; gap: 10px; }
+    .bonus-price { text-decoration: line-through; color: #ff4444; font-size: 12px; }
 
-    /* MÓDULOS */
-    .modules-list {
-      max-width: 500px;
-      margin: 40px auto;
-      text-align: left;
-      padding: 0 25px;
-    }
-    .module-card {
-      background: rgba(255,255,255,0.03);
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      border-left: 3px solid #00ff99;
-      font-size: 14px;
-      display: flex;
-      justify-content: space-between;
-    }
+    /* TESTIMONIALS INSTAGRAM */
+    .testimonials { text-align: left; margin-top: 50px; }
+    .testimonial-card { background: var(--card); border: 1px solid #1a1a1a; padding: 18px; border-radius: 12px; margin-bottom: 15px; }
+    .user-info { display: flex; align-items: center; margin-bottom: 12px; }
+    .user-avatar { width: 42px; height: 42px; border-radius: 50%; margin-right: 12px; }
+    .user-name { font-size: 14px; font-weight: bold; color: var(--accent); }
 
-    /* SEÇÃO DE PROVA SOCIAL (DEPOIMENTOS) */
-    .testimonials {
-      max-width: 500px;
-      margin: 50px auto;
-      padding: 0 25px;
-      text-align: left;
-    }
-    .testimonial-card {
-      background: #0a0a0a;
-      border: 1px solid #1a1a1a;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-    .user-info { display: flex; align-items: center; margin-bottom: 10px; }
-    .user-avatar { width: 40px; height: 40px; border-radius: 50%; background: #222; margin-right: 12px; }
-    .user-name { font-size: 14px; font-weight: bold; color: #00ff99; }
-    .user-comment { font-size: 13px; color: #999; line-height: 1.4; font-style: italic; }
+    /* PREÇO E BOTÃO */
+    .price-area { padding: 60px 0; border-top: 1px solid #111; }
+    .value { font-size: 4em; font-weight: 900; color: #fff; margin: 10px 0; letter-spacing: -2px; }
+    .btn { display: inline-block; padding: 22px 55px; font-size: 1.2em; color: #000; background: var(--accent); border-radius: 50px; text-decoration: none; font-weight: 900; text-transform: uppercase; box-shadow: 0 0 20px var(--accent); animation: pulse 1.8s infinite; cursor: pointer; border: none; width: 100%; max-width: 400px; }
 
-    /* NOTIFICAÇÃO DE VENDA FLUTUANTE */
-    #sales-pop {
-      position: fixed; bottom: 20px; left: 20px;
-      background: #fff; color: #000;
-      padding: 12px 20px; border-radius: 10px;
-      display: flex; align-items: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      z-index: 1000; transition: 0.5s;
-      transform: translateX(-150%);
-      font-size: 12px; font-weight: bold;
-    }
-    #sales-pop img { width: 30px; margin-right: 10px; }
+    @keyframes pulse { 0% { box-shadow: 0 0 15px var(--accent); transform: scale(1); } 50% { box-shadow: 0 0 35px var(--accent); transform: scale(1.03); } 100% { box-shadow: 0 0 15px var(--accent); transform: scale(1); } }
 
-    /* PDF FAKE */
-    .pdf-loading {
-      max-width: 450px;
-      margin: 30px auto;
-      font-family: monospace;
-      font-size: 11px;
-      color: #555;
-    }
-    .bar-bg { width: 100%; height: 2px; background: #111; margin-top: 5px; }
-    .bar-fill { height: 100%; background: #00ff99; width: 0%; transition: 0.3s; }
-
-    /* PREÇO */
-    .price-area { margin-top: 50px; padding-bottom: 60px; }
-    .installment { color: #888; font-size: 16px; margin-bottom: 5px; }
-    .value { font-size: 3.5em; font-weight: 900; color: #fff; margin-bottom: 5px; }
-    .cash { color: #444; font-size: 13px; margin-bottom: 30px; }
-
-    .btn {
-      display: inline-block;
-      padding: 20px 50px;
-      font-size: 1.2em;
-      color: #000;
-      background: #00ff99;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: bold;
-      text-transform: uppercase;
-      box-shadow: 0 0 20px #00ff99;
-      animation: pulse 1.5s infinite;
-      cursor: pointer;
-      border: none;
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 15px #00ff99; transform: scale(1); }
-      50% { box-shadow: 0 0 35px #00ff99; transform: scale(1.02); }
-      100% { box-shadow: 0 0 15px #00ff99; transform: scale(1); }
-    }
-
-    #loader {
-      display: none; position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%; background: #000;
-      z-index: 9999; flex-direction: column;
-      align-items: center; justify-content: center;
-    }
+    #sales-pop { position: fixed; bottom: 20px; left: 20px; background: #fff; color: #000; padding: 12px 18px; border-radius: 8px; display: flex; align-items: center; box-shadow: 0 10px 40px rgba(0,0,0,0.6); z-index: 1000; transition: 0.6s; transform: translateX(-150%); font-size: 11px; font-weight: bold; }
+    #loader { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; flex-direction: column; align-items: center; justify-content: center; }
   </style>
 </head>
 <body>
 
   <div id="sales-pop">
-    <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="check">
-    <div><span id="pop-name">Gabriel S.</span> acabou de ativar o protocolo!</div>
+    <div style="background:var(--accent); width:8px; height:8px; border-radius:50%; margin-right:10px;"></div>
+    <div><span id="pop-name">gui_viana</span> ativou o protocolo!</div>
   </div>
 
-  <img src="https://files.imagetourl.net/uploads/1769555414520-93412662-bce8-4561-87c7-8f8b0745bb1e.jpeg" class="profile-img">
+  <div class="section">
+    <img src="https://files.imagetourl.net/uploads/1769555414520-93412662-bce8-4561-87c7-8f8b0745bb1e.jpeg" class="profile-img">
+    <h1>Protocolo GOAT</h1>
+    <p class="subtitle">O sistema invisível que transforma seguidores comuns em vendas diárias usando IA e automação.</p>
 
-  <h1>Protocolo GOAT</h1>
-  <p class="subtitle">O sistema invisível que transforma seguidores comuns em vendas diárias usando IA e automação.</p>
-
-  <div class="video-wrapper">
     <div class="video-container">
       <iframe id="goatVideo" src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&mute=1&controls=0&rel=0&enablejsapi=1" frameborder="0"></iframe>
     </div>
-  </div>
-  <button id="unmute-trigger" onclick="enableAudio()">[ CLIQUE PARA ATIVAR O SOM ]</button>
-
-  <div class="modules-list">
-    <div class="module-card"><span>Módulo 01: Acelerador Visual</span> <span>OK</span></div>
-    <div class="module-card"><span>Módulo 02: Engenharia Advanced</span> <span>OK</span></div>
-    <div class="module-card"><span>Módulo 03: Domínio de IA</span> <span>OK</span></div>
+    <button id="unmute-trigger" onclick="enableAudio()">[ CLIQUE PARA ATIVAR O SOM ]</button>
   </div>
 
-  <div class="testimonials">
-    <h3 style="color:#444; font-size: 12px; margin-bottom: 20px; letter-spacing: 2px;">FEEDBACK_DOS_USUÁRIOS</h3>
-    
+  <div class="section">
+    <h2 style="color:var(--accent); font-size: 14px; letter-spacing: 3px; margin-bottom: 20px;">O QUE VOCÊ VAI RECEBER:</h2>
+    <div class="mockup-area">
+        <img src="https://cdn.pixabay.com/photo/2018/05/08/08/44/artificial-intelligence-3382507_1280.png" class="mockup-img" alt="Mockup Protocolo GOAT">
+    </div>
+
+    <div class="module-box">
+        <div class="module-tag">MÓDULO 01</div>
+        <h3>Acelerador Visual 2.0</h3>
+        <p>Aprenda a criar artes que interrompem o scroll. O segredo das cores e fontes que hipnotizam o olhar do seu cliente em 2 segundos.</p>
+    </div>
+
+    <div class="module-box">
+        <div class="module-tag">MÓDULO 02</div>
+        <h3>Engenharia Advanced</h3>
+        <p>Como estruturar o seu perfil para converter visitantes em compradores no automático, sem precisar implorar por vendas.</p>
+    </div>
+
+    <div class="module-box">
+        <div class="module-tag">MÓDULO 03</div>
+        <h3>Domínio de I.A.</h3>
+        <p>As ferramentas secretas que eu uso para criar conteúdo de um mês inteiro em apenas 1 hora de trabalho.</p>
+    </div>
+
+    <div class="bonus-card">
+        <span style="font-size: 20px;">🎁</span>
+        <div style="text-align: left;">
+            <div style="font-size: 13px; font-weight: bold; color: var(--accent);">BÔNUS: Scripts de Venda High-Ticket</div>
+            <div class="bonus-price">De R$ 197,00 por R$ 0,00</div>
+        </div>
+    </div>
+  </div>
+
+  <div class="section testimonials">
     <div class="testimonial-card">
       <div class="user-info">
-        <div class="user-avatar" style="background: url('https://randomuser.me/api/portraits/men/32.jpg') center/cover;"></div>
-        <div class="user-name">Lucas Ferreira</div>
+        <img src="https://i.pravatar.cc/150?u=1" class="user-avatar">
+        <div class="user-name">felipe_rodrigues.ia ✔</div>
       </div>
-      <div class="user-comment">"Eu achei que era só mais um curso, mas as automações de IA mudaram meu jogo. Recuperei o investimento na primeira semana."</div>
+      <div class="user-comment">"O conteúdo do módulo 2 é sacanagem. Apliquei no meu perfil e o alcance dobrou em 3 dias. Vale cada centavo."</div>
     </div>
 
     <div class="testimonial-card">
       <div class="user-info">
-        <div class="user-avatar" style="background: url('https://randomuser.me/api/portraits/women/44.jpg') center/cover;"></div>
-        <div class="user-name">Mariana Costa</div>
+        <img src="https://i.pravatar.cc/150?u=8" class="user-avatar">
+        <div class="user-name">beatriz.digital_</div>
       </div>
-      <div class="user-comment">"O design que aprendi no módulo 02 parou meu Instagram. As vendas vieram no automático."</div>
+      <div class="user-comment">"Slk, finalmente alguém que ensina a usar IA sem enrolação. O PDF final é o mapa da mina."</div>
     </div>
   </div>
 
-  <div class="pdf-loading">
-    <div id="status-text">PREPARANDO_PROTOCOLO_PERSONALIZADO.PDF...</div>
-    <div class="bar-bg"><div class="bar-fill" id="bar"></div></div>
-  </div>
-
-  <div class="price-area">
+  <div class="section price-area">
+    <div style="font-size: 12px; color: #ff4444; font-weight: bold; margin-bottom: 10px;">⚠️ OFERTA POR TEMPO LIMITADO</div>
     <div class="installment">6x de</div>
     <div class="value">R$ 8,99</div>
     <div class="cash">ou à vista R$ 47,90</div>
-
     <button class="btn" onclick="startRedirect()">Ativar o Protocolo Agora</button>
+    <p style="font-size: 10px; color: #444; margin-top: 20px;">Pagamento Seguro • Acesso Imediato • Garantia de 7 Dias</p>
   </div>
 
   <div id="loader">
-    <div style="color: #00ff99; font-family: monospace; font-size: 14px; letter-spacing: 2px;">AUTENTICANDO ACESSO...</div>
-    <div style="width: 150px; height: 1px; background: #111; margin-top: 20px;">
-      <div style="height: 100%; background: #00ff99; width: 0%;" id="load-fill"></div>
-    </div>
+    <div style="color: var(--accent); font-family: monospace; font-size: 12px; letter-spacing: 2px;">AUTENTICANDO_ACESSO_SEGURO...</div>
+    <div style="width: 150px; height: 1px; background: #111; margin-top: 20px;"><div style="height: 100%; background: var(--accent); width: 0%;" id="load-fill"></div></div>
   </div>
 
   <script>
-    // AUDIO ENGINE
     function enableAudio() {
       const frame = document.getElementById('goatVideo');
       frame.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
@@ -244,28 +146,15 @@
       document.getElementById('unmute-trigger').style.display = 'none';
     }
 
-    // SALES POPUP ENGINE
-    const names = ["Ricardo M.", "Ana Paula", "Bruno Silva", "Carla J.", "Felipe T.", "Juliana O."];
+    const names = ["gui_viana", "Ana Clara 🚀", "thiagomkt", "Bru_Almeida", "jhow.oficial", "Lari ✨", "pedro_ia"];
     function showSales() {
         const pop = document.getElementById('sales-pop');
-        const nameSpan = document.getElementById('pop-name');
-        nameSpan.innerText = names[Math.floor(Math.random() * names.length)];
-        
+        document.getElementById('pop-name').innerText = names[Math.floor(Math.random() * names.length)];
         pop.style.transform = "translateX(0)";
-        setTimeout(() => {
-            pop.style.transform = "translateX(-150%)";
-        }, 4000);
+        setTimeout(() => { pop.style.transform = "translateX(-150%)"; }, 4000);
     }
-    setInterval(showSales, 12000); // Aparece a cada 12 segundos
+    setInterval(showSales, 10000);
 
-    // PDF PROGRESS
-    let p = 0;
-    setInterval(() => {
-      if(p < 100) { p += 0.5; document.getElementById('bar').style.width = p + '%'; }
-      else { document.getElementById('status-text').innerText = 'PROTOCOLO_LIBERADO'; }
-    }, 100);
-
-    // REDIRECT
     function startRedirect() {
       document.getElementById('loader').style.display = 'flex';
       let w = 0;
@@ -273,13 +162,9 @@
         if (w >= 100) {
           clearInterval(loadInterval);
           window.location.href = "https://pay.hotmart.com/L103950840Q?off=55x6x7d1";
-        } else {
-          w += 4;
-          document.getElementById('load-fill').style.width = w + '%';
-        }
-      }, 50);
+        } else { w += 5; document.getElementById('load-fill').style.width = w + '%'; }
+      }, 40);
     }
   </script>
-
 </body>
 </html>
