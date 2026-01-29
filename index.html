@@ -12,7 +12,7 @@
       background: var(--bg); color: #fff; text-align: center; overflow-x: hidden;
     }
 
-    /* HEADER SECTIONS */
+    /* SEÇÕES DO FUNIL */
     .section { padding: 60px 20px; max-width: 600px; margin: auto; }
     .profile-img { width: 90px; height: 90px; border-radius: 50%; border: 2px solid var(--accent); margin-top: 20px; object-fit: cover; }
     h1 { font-size: 2.2em; text-shadow: 0 0 20px var(--accent); margin-top: 15px; text-transform: uppercase; letter-spacing: 3px; }
@@ -23,33 +23,48 @@
     .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
     #unmute-trigger { display: block; margin: 15px auto; background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 12px 25px; border-radius: 5px; cursor: pointer; font-size: 11px; font-weight: bold; text-transform: uppercase; }
 
-    /* IMAGENS EM GAVETA (GRID DE ATRAÇÃO) */
-    .drawer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 30px 0; }
-    .drawer-item { background: var(--card); border: 1px solid #1a1a1a; border-radius: 10px; overflow: hidden; }
-    .drawer-img { width: 100%; height: 150px; object-fit: cover; opacity: 0.8; transition: 0.3s; }
-    .drawer-item:hover .drawer-img { opacity: 1; }
-    .drawer-caption { font-size: 10px; padding: 10px; color: var(--accent); font-weight: bold; text-transform: uppercase; }
+    /* --- NOVA SEÇÃO: VITRINE DE EBOOKS (PDFs) --- */
+    .ebook-vitrine {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 40px 0;
+    }
+    .ebook-item {
+      background: #0a0a0a;
+      border: 1px solid #1a1a1a;
+      border-radius: 15px;
+      padding: 15px;
+      transition: 0.3s;
+      text-align: center;
+    }
+    .ebook-item:hover { border-color: var(--accent); transform: translateY(-5px); }
+    .ebook-mockup {
+      width: 100%;
+      height: 140px;
+      background: linear-gradient(45deg, #111, #000);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+    .ebook-mockup::after {
+        content: "PDF";
+        position: absolute; top: 10px; right: 10px;
+        background: var(--accent); color: #000;
+        font-size: 8px; font-weight: 900; padding: 2px 6px; border-radius: 3px;
+    }
+    .ebook-title { font-size: 12px; font-weight: bold; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+    .ebook-desc { font-size: 10px; color: #555; margin-top: 5px; }
 
-    /* MOCKUP VISUAL */
-    .mockup-area { margin: 40px 0; padding: 20px; background: linear-gradient(180deg, #050505 0%, #0d0d0d 100%); border-radius: 15px; border: 1px solid #111; }
-    .mockup-img { width: 100%; max-width: 400px; filter: drop-shadow(0 0 20px rgba(0,255,153,0.2)); }
-
-    /* MÓDULOS REFINADOS */
+    /* MÓDULOS */
     .module-box { text-align: left; background: var(--card); border: 1px solid #1a1a1a; padding: 25px; border-radius: 15px; margin-bottom: 20px; position: relative; overflow: hidden; }
     .module-tag { position: absolute; top: 0; right: 0; background: var(--accent); color: #000; font-size: 10px; padding: 5px 15px; font-weight: bold; border-bottom-left-radius: 10px; }
     .module-box h3 { color: var(--accent); margin-bottom: 10px; font-size: 18px; text-transform: uppercase; }
     .module-box p { color: #888; font-size: 14px; line-height: 1.5; margin: 0; }
-
-    /* BÔNUS STACK */
-    .bonus-card { border: 1px dashed var(--accent); padding: 15px; border-radius: 10px; margin-top: 10px; display: flex; align-items: center; gap: 10px; }
-    .bonus-price { text-decoration: line-through; color: #ff4444; font-size: 12px; }
-
-    /* TESTIMONIALS INSTAGRAM */
-    .testimonials { text-align: left; margin-top: 50px; }
-    .testimonial-card { background: var(--card); border: 1px solid #1a1a1a; padding: 18px; border-radius: 12px; margin-bottom: 15px; }
-    .user-info { display: flex; align-items: center; margin-bottom: 12px; }
-    .user-avatar { width: 42px; height: 42px; border-radius: 50%; margin-right: 12px; }
-    .user-name { font-size: 14px; font-weight: bold; color: var(--accent); }
 
     /* PREÇO E BOTÃO */
     .price-area { padding: 60px 0; border-top: 1px solid #111; }
@@ -72,87 +87,66 @@
   <div class="section">
     <img src="https://files.imagetourl.net/uploads/1769555414520-93412662-bce8-4561-87c7-8f8b0745bb1e.jpeg" class="profile-img">
     <h1>Protocolo GOAT</h1>
-    <p class="subtitle">Descubra o método matemático para transformar <b>visualizações em lucro real</b> usando a tecnologia mais avançada de 2026.</p>
+    <p class="subtitle">O sistema invisível que transforma seguidores comuns em vendas diárias usando IA e automação.</p>
 
     <div class="video-container">
       <iframe id="goatVideo" src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&mute=1&controls=0&rel=0&enablejsapi=1" frameborder="0"></iframe>
     </div>
-    <button id="unmute-trigger" onclick="enableAudio()">[ ATIVAR COMANDOS DE ÁUDIO ]</button>
+    <button id="unmute-trigger" onclick="enableAudio()">[ CLIQUE PARA ATIVAR O ÁUDIO ]</button>
   </div>
 
   <div class="section">
-    <h2 style="color:var(--accent); font-size: 14px; letter-spacing: 3px; margin-bottom: 20px;">O QUE VOCÊ VAI DOMINAR:</h2>
+    <h2 style="color:var(--accent); font-size: 14px; letter-spacing: 3px; margin-bottom: 30px; text-transform: uppercase;">BIBLIOTECA DE ATIVOS INCLUSA:</h2>
     
-    <div class="drawer-grid">
-      <div class="drawer-item">
-        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=400" class="drawer-img">
-        <div class="drawer-caption">Alcance Viral</div>
-      </div>
-      <div class="drawer-item">
-        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=400" class="drawer-img">
-        <div class="drawer-caption">Lucro em I.A</div>
-      </div>
+    <div class="ebook-vitrine">
+        <div class="ebook-item">
+            <div class="ebook-mockup">
+                <span style="font-size: 30px;">📘</span>
+            </div>
+            <div class="ebook-title">Blueprint IA</div>
+            <div class="ebook-desc">Mapa de execução diária passo a passo.</div>
+        </div>
+        <div class="ebook-item">
+            <div class="ebook-mockup">
+                <span style="font-size: 30px;">📗</span>
+            </div>
+            <div class="ebook-title">Dicionário de Prompts</div>
+            <div class="ebook-desc">Os comandos exatos para resultados reais.</div>
+        </div>
+        <div class="ebook-item">
+            <div class="ebook-mockup">
+                <span style="font-size: 30px;">📙</span>
+            </div>
+            <div class="ebook-title">Manual de Escala</div>
+            <div class="ebook-desc">Como transformar R$ 10 em R$ 1.000.</div>
+        </div>
+        <div class="ebook-item">
+            <div class="ebook-mockup">
+                <span style="font-size: 30px;">📓</span>
+            </div>
+            <div class="ebook-title">Checklist VSL</div>
+            <div class="ebook-desc">Roteiros que vendem no automático.</div>
+        </div>
     </div>
 
     <div class="module-box">
         <div class="module-tag">ESTRATÉGIA</div>
         <h3>O Algoritmo Decifrado</h3>
-        <p>Pare de postar e torcer. Aprenda a engenharia reversa que força o Instagram a entregar seu conteúdo para quem realmente tem dinheiro para comprar.</p>
-    </div>
-
-    <div class="module-box">
-        <div class="module-tag">EXECUÇÃO</div>
-        <h3>Design que Converte</h3>
-        <p>Não é sobre ser "bonito", é sobre ser hipnótico. Use padrões visuais de I.A. para prender a atenção do seu cliente no primeiro segundo de scroll.</p>
+        <p>Aprenda a engenharia reversa que força o Instagram a entregar seu conteúdo para quem realmente tem dinheiro para comprar.</p>
     </div>
 
     <div class="module-box">
         <div class="module-tag">AUTOMAÇÃO</div>
-        <h3>Vendas no Invisível</h3>
-        <p>Configure robôs de atendimento que vendem enquanto você dorme, transformando cada direct em um boleto pago.</p>
-    </div>
-
-    <div class="bonus-card">
-        <span style="font-size: 20px;">🔥</span>
-        <div style="text-align: left;">
-            <div style="font-size: 13px; font-weight: bold; color: var(--accent);">BÔNUS: Pack de Prompts Inéditos</div>
-            <div class="bonus-price">De R$ 197,00 por R$ 0,00</div>
-        </div>
-    </div>
-  </div>
-
-  <div class="section" style="padding-top: 0;">
-    <div class="mockup-area">
-        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=600" class="mockup-img" alt="I.A Interface">
-        <p style="font-size: 11px; margin-top: 15px; color: #555;">INTERAÇÃO COM O SISTEMA GOAT V.2.6</p>
-    </div>
-  </div>
-
-  <div class="section testimonials">
-    <div class="testimonial-card">
-      <div class="user-info">
-        <img src="https://i.pravatar.cc/150?u=1" class="user-avatar">
-        <div class="user-name">felipe_rodrigues.ia ✔</div>
-      </div>
-      <div class="user-comment">"Nunca vi nada igual. Apliquei os comandos do módulo 2 e meu faturamento dobrou em 15 dias. O protocolo é real."</div>
-    </div>
-
-    <div class="testimonial-card">
-      <div class="user-info">
-        <img src="https://i.pravatar.cc/150?u=8" class="user-avatar">
-        <div class="user-name">beatriz.digital_</div>
-      </div>
-      <div class="user-comment">"A parte de automação é insana. Eu não tenho mais que responder direct, o sistema faz tudo sozinho."</div>
+        <h3>Mestre das I.A.s</h3>
+        <p>As ferramentas secretas para criar conteúdo de um mês inteiro em apenas 1 hora de trabalho.</p>
     </div>
   </div>
 
   <div class="section price-area">
-    <div style="font-size: 12px; color: #ff4444; font-weight: bold; margin-bottom: 10px;">⚠️ ACESSO IMEDIATO DISPONÍVEL</div>
     <div class="installment">6x de</div>
     <div class="value">R$ 8,99</div>
     <div class="cash">ou à vista R$ 47,90</div>
     <button class="btn" onclick="startRedirect()">Ativar o Protocolo Agora</button>
-    <p style="font-size: 10px; color: #444; margin-top: 20px;">Pagamento Seguro • Satisfação Garantida • Acesso Vitalício</p>
   </div>
 
   <div id="loader">
@@ -168,7 +162,7 @@
       document.getElementById('unmute-trigger').style.display = 'none';
     }
 
-    const names = ["gui_viana", "Ana Clara 🚀", "thiagomkt", "Bru_Almeida", "jhow.oficial", "Lari ✨", "pedro_ia"];
+    const names = ["pedro_ia", "Ana Clara 🚀", "thiagomkt", "Bru_Almeida", "jhow.oficial", "Lari ✨", "pedro_ia"];
     function showSales() {
         const pop = document.getElementById('sales-pop');
         document.getElementById('pop-name').innerText = names[Math.floor(Math.random() * names.length)];
