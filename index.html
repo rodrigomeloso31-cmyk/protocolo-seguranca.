@@ -21,19 +21,25 @@
       filter: blur(80px); transition: 0.2s;
     }
 
-    /* BARRA DE CARGA CIBERNÉTICA NO TOPO */
     .top-loader {
       position: fixed; top: 0; left: 0; width: 100%; height: 2px;
       background: linear-gradient(90deg, transparent, var(--accent), transparent);
       z-index: 1000; opacity: 0.5;
     }
 
-    .hero {
-      height: 100vh; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; position: relative;
+    /* BOTÃO FLUTUANTE DE SOM */
+    #unmute-float {
+        position: fixed; bottom: 30px; right: 20px; z-index: 9999;
+        background: var(--accent); color: #000; border: none; padding: 15px 25px;
+        border-radius: 50px; font-weight: 900; font-size: 11px; text-transform: uppercase;
+        box-shadow: 0 10px 30px rgba(0, 255, 153, 0.4); cursor: pointer;
+        display: flex; align-items: center; gap: 10px; animation: pulseFloat 2s infinite;
     }
 
-    /* TIPOGRAFIA CINÉTICA GIGANTE */
+    @keyframes pulseFloat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+    .hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
+
     .giant-text {
       font-size: 15vw; font-weight: 900; letter-spacing: -0.5vw;
       background: linear-gradient(180deg, #fff 30%, rgba(255,255,255,0.1) 100%);
@@ -41,15 +47,10 @@
       line-height: 0.8; text-transform: uppercase;
     }
 
-    .profile-wrap {
-      position: absolute; top: 10%; transition: 0.5s;
-    }
-    .profile-img { 
-      width: 70px; height: 70px; border-radius: 50%; 
-      border: 1px solid var(--accent); padding: 5px;
-    }
+    .profile-wrap { position: absolute; top: 10%; transition: 0.5s; }
+    .profile-img { width: 70px; height: 70px; border-radius: 50%; border: 1px solid var(--accent); padding: 5px; }
 
-    /* CONTAINER DO VÍDEO "FLUTUANTE" */
+    /* VIDEO SECTION */
     .video-section { padding: 100px 20px; perspective: 1000px; }
     .video-box {
       max-width: 900px; margin: auto; border-radius: 30px;
@@ -61,46 +62,39 @@
     .video-container { position: relative; padding-bottom: 56.25%; }
     .video-container iframe { position: absolute; top:0; left:0; width:100%; height:100%; }
 
-    /* GRID DE INVENTÁRIO ESPACIAL */
-    .grid-wrap {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px; padding: 100px 5vw; max-width: 1200px; margin: auto;
-    }
-    .card {
-      background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
-      padding: 40px; border-radius: 40px; text-align: left;
-      backdrop-filter: blur(20px); transition: 0.5s;
-    }
-    .card:hover { 
-      border-color: var(--accent); background: rgba(0, 255, 153, 0.02);
-      transform: translateY(-20px);
-    }
-    .card h3 { color: var(--accent); font-size: 24px; margin-bottom: 10px; }
-    .card p { color: #888; line-height: 1.6; }
+    /* QUADROS DE IMAGENS (GAVETA) */
+    .image-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 50px 5vw; max-width: 1200px; margin: auto; }
+    .img-card { background: #111; border: 1px solid #222; border-radius: 20px; overflow: hidden; transition: 0.4s; }
+    .img-card:hover { border-color: var(--accent); transform: scale(1.02); }
+    .img-card img { width: 100%; height: 200px; object-fit: cover; opacity: 0.7; }
+    .img-card h4 { padding: 15px; margin: 0; font-size: 14px; text-transform: uppercase; color: var(--accent); }
 
-    /* BOTÃO LIQUID NEON */
-    .cta-wrap { padding: 150px 20px; }
+    /* GRID DE INFO */
+    .grid-wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; padding: 100px 5vw; max-width: 1200px; margin: auto; }
+    .card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 40px; border-radius: 40px; text-align: left; backdrop-filter: blur(20px); transition: 0.5s; }
+    .card:hover { border-color: var(--accent); transform: translateY(-20px); }
+    .card h3 { color: var(--accent); font-size: 24px; margin-bottom: 10px; }
+
+    /* CTA */
+    .cta-wrap { padding: 100px 20px; text-align: center; }
     .btn-liquid {
       position: relative; display: inline-block; padding: 30px 80px;
       background: var(--accent); color: #000; font-weight: 900;
       text-decoration: none; border-radius: 100px; font-size: 20px;
-      text-transform: uppercase; overflow: hidden; transition: 0.4s;
-      box-shadow: 0 0 50px rgba(0, 255, 153, 0.3);
-    }
-    .btn-liquid:hover {
-      transform: scale(1.1); box-shadow: 0 0 80px var(--accent);
+      text-transform: uppercase; cursor: pointer; transition: 0.4s;
+      box-shadow: 0 0 50px rgba(0, 255, 153, 0.3); border: none;
     }
 
-    #sync-screen {
-      display: none; position: fixed; top:0; left:0; width:100%; height:100%;
-      background: #000; z-index: 9999; flex-direction: column; align-items: center; justify-content: center;
-    }
+    #sync-screen { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: #000; z-index: 10000; flex-direction: column; align-items: center; justify-content: center; }
+    .sync-fill { height: 1px; background: var(--accent); width: 0%; box-shadow: 0 0 15px var(--accent); }
   </style>
 </head>
 <body>
 
   <div class="top-loader"></div>
   <div class="orb" id="orb"></div>
+
+  <button id="unmute-float" onclick="forceAudio()">🔊 ATIVAR ÁUDIO DO SISTEMA</button>
 
   <section class="hero">
     <div class="profile-wrap">
@@ -113,9 +107,20 @@
   <section class="video-section">
     <div class="video-box" id="vbox">
       <div class="video-container">
-        <iframe id="player" src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&mute=1&controls=0&rel=0&enablejsapi=1" frameborder="0"></iframe>
+        <iframe id="youtube-player" src="https://www.youtube.com/embed/MkY7ajtJp0U?enablejsapi=1&autoplay=1&mute=1&controls=0&rel=0" frameborder="0"></iframe>
       </div>
     </div>
+  </section>
+
+  <section class="image-grid">
+      <div class="img-card">
+          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=400" alt="IA Visual">
+          <h4>Interface IA 2.6</h4>
+      </div>
+      <div class="img-card">
+          <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=400" alt="Lucro Digital">
+          <h4>Escala de Ativos</h4>
+      </div>
   </section>
 
   <section class="grid-wrap">
@@ -138,27 +143,33 @@
   </section>
 
   <section class="cta-wrap">
-    <div style="font-size: 12px; color: #444; margin-bottom: 20px;">ATIVE A SUA CHAVE DE ACESSO AGORA</div>
     <div style="font-size: 40px; font-weight: 900; margin-bottom: 40px;">R$ 47,90</div>
-    <button class="btn-liquid" onclick="startSync()">Ativar Protocolo</button>
+    <button class="btn-liquid" onclick="startSync()">Ativar Protocolo Agora</button>
   </section>
 
   <div id="sync-screen">
     <div style="color: var(--accent); font-family: monospace; letter-spacing: 5px;" id="st">AUTORIZANDO...</div>
     <div style="width: 200px; height: 1px; background: #222; margin-top: 20px;">
-      <div id="f" style="height:100%; background: var(--accent); width:0%;"></div>
+      <div id="f" class="sync-fill"></div>
     </div>
   </div>
 
   <script>
-    // EFEITO MAGNÉTICO DO FUNDO
+    // CORREÇÃO DO SOM (POSTMESSAGE API)
+    function forceAudio() {
+        const frame = document.getElementById('youtube-player');
+        // Comando unMute e playVideo via API do YouTube
+        frame.contentWindow.postMessage('{"event":"command","func":"unMute","args":""}', '*');
+        frame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+        document.getElementById('unmute-float').style.display = 'none';
+    }
+
     const orb = document.getElementById('orb');
     document.addEventListener('mousemove', (e) => {
       orb.style.left = e.clientX - 200 + 'px';
       orb.style.top = e.clientY - 200 + 'px';
     });
 
-    // ANIMAÇÃO AO SCROLL
     window.addEventListener('scroll', () => {
       const scroll = window.scrollY;
       const vbox = document.getElementById('vbox');
