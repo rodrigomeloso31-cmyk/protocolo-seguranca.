@@ -15,58 +15,89 @@
 
     .section { padding: 40px 20px; max-width: 800px; margin: auto; }
     .profile-img { width: 85px; height: 85px; border-radius: 50%; border: 2px solid var(--accent); margin-top: 20px; box-shadow: 0 0 30px rgba(0, 255, 153, 0.15); }
-    h1 { font-size: 2.2em; text-shadow: 0 0 20px var(--accent); margin-top: 15px; letter-spacing: 5px; font-weight: 900; }
+    
+    /* STATUS DO SERVIDOR (ESTILO FUTURISTA) */
+    .server-status { font-family: monospace; font-size: 9px; color: var(--accent); letter-spacing: 3px; margin-bottom: 5px; text-transform: uppercase; }
+
+    h1 { font-size: 2.2em; text-shadow: 0 0 20px var(--accent); margin-top: 10px; letter-spacing: 5px; font-weight: 900; }
 
     /* VIDEO WIDESCREEN 16:9 */
     .video-wrapper { width: 100%; max-width: 750px; margin: 20px auto; padding: 0 10px; }
-    .video-container { position: relative; width: 100%; padding-bottom: 56.25%; background: #000; border-radius: 15px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.8); }
+    .video-container { 
+        position: relative; width: 100%; padding-bottom: 56.25%; 
+        background: #000; border-radius: 15px; overflow: hidden; 
+        border: 1px solid var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.8); 
+    }
     .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
     /* BOTÃO FLUTUANTE DE SOM */
     #unmute-float {
         position: fixed; bottom: 30px; right: 20px; z-index: 9999;
         background: var(--accent); color: #000; border: none; padding: 15px 25px;
-        border-radius: 50px; font-weight: 900; font-size: 12px; text-transform: uppercase;
+        border-radius: 50px; font-weight: 900; font-size: 11px; text-transform: uppercase;
         box-shadow: 0 10px 30px rgba(0, 255, 153, 0.4); cursor: pointer;
-        display: flex; align-items: center; gap: 10px; animation: pulseFloat 2s infinite;
+        display: flex; align-items: center; gap: 10px; transition: 0.3s;
     }
 
-    /* ESCASSEZ DINÂMICA */
-    .urgency-box { background: rgba(255, 0, 0, 0.1); border: 1px solid #ff4444; color: #ff4444; padding: 10px; border-radius: 8px; font-size: 12px; font-weight: bold; margin-bottom: 20px; display: inline-block; }
-
-    /* VITRINE DE ATIVOS */
+    /* VITRINE DE ATIVOS (CARDS COM GLOW) */
     .ebook-vitrine { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 40px 0; }
-    .ebook-item { background: var(--glass); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: 20px; padding: 20px; }
-    .ebook-title { font-size: 12px; font-weight: 800; color: #fff; text-transform: uppercase; }
+    .ebook-item {
+      background: var(--glass); backdrop-filter: blur(10px);
+      border: 1px solid var(--border); border-radius: 20px; padding: 25px 15px;
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .ebook-item:hover {
+      border-color: var(--accent); transform: translateY(-10px);
+      box-shadow: 0 0 25px rgba(0, 255, 153, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .ebook-icon { font-size: 32px; margin-bottom: 12px; display: block; filter: drop-shadow(0 0 8px var(--accent)); }
+    .ebook-title { font-size: 13px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+    .ebook-desc { font-size: 11px; color: #777; margin-top: 8px; line-height: 1.4; }
 
-    /* PREÇO E BOTAO */
-    .price-card { background: rgba(255,255,255,0.02); padding: 40px 20px; border-radius: 30px; margin-top: 30px; border: 1px solid #111; }
+    /* PREÇO E BOTÃO COM PULSO NEON */
+    .price-card { background: rgba(255,255,255,0.02); padding: 40px 20px; border-radius: 30px; margin-top: 30px; border: 1px solid #111; position: relative; }
     .value { font-size: 4em; font-weight: 900; color: #fff; margin: 5px 0; letter-spacing: -2px; }
+    
     .btn {
       display: inline-block; padding: 22px; font-size: 1.2em; color: #000;
       background: var(--accent); border-radius: 100px; text-decoration: none;
       font-weight: 900; text-transform: uppercase; cursor: pointer; border: none; width: 100%; max-width: 400px;
+      animation: neon-pulse 1.8s infinite alternate;
+      transition: 0.3s;
     }
 
-    /* INTERAÇÃO DE PAGAMENTO */
-    #payment-sync {
+    @keyframes neon-pulse {
+      0% { box-shadow: 0 0 5px var(--accent); transform: scale(1); }
+      100% { box-shadow: 0 0 25px var(--accent), 0 0 45px rgba(0, 255, 153, 0.4); transform: scale(1.03); }
+    }
+
+    /* OVERLAY DE SINCRONIZAÇÃO */
+    #sync-overlay {
         display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
         background: #000; z-index: 10000; flex-direction: column; align-items: center; justify-content: center;
     }
-    .sync-bar { width: 200px; height: 2px; background: #111; margin-top: 20px; overflow: hidden; }
-    .sync-fill { height: 100%; background: var(--accent); width: 0%; transition: 0.1s; }
-    .sync-text { font-family: monospace; font-size: 10px; color: var(--accent); letter-spacing: 2px; }
+    .sync-bar { width: 220px; height: 2px; background: #111; margin-top: 20px; border-radius: 10px; overflow: hidden; }
+    .sync-fill { height: 100%; background: var(--accent); width: 0%; transition: 0.1s; box-shadow: 0 0 10px var(--accent); }
 
-    @keyframes pulseFloat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    #sales-pop { position: fixed; bottom: 20px; left: 20px; background: #fff; color: #000; padding: 12px 18px; border-radius: 12px; display: flex; align-items: center; box-shadow: 0 10px 40px rgba(0,0,0,0.6); z-index: 1000; transform: translateX(-280%); transition: 0.8s; font-size: 11px; font-weight: bold; }
   </style>
 </head>
 <body>
 
-  <button id="unmute-float" onclick="forceAudio()">🔊 ATIVAR ÁUDIO DO SISTEMA</button>
+  <button id="unmute-float" onclick="forceAudio()">🔊 ATIVAR CONEXÃO DE ÁUDIO</button>
+
+  <div id="sales-pop">
+    <div style="background:var(--accent); width:8px; height:8px; border-radius:50%; margin-right:10px;"></div>
+    <div><span id="pop-name">felipe.mkt</span> desbloqueou o acesso!</div>
+  </div>
 
   <div class="section">
+    <div class="server-status">SISTEMA_OPERACIONAL: ONLINE // ACESSO_CRIPTOGRAFADO</div>
     <img src="https://files.imagetourl.net/uploads/1769555414520-93412662-bce8-4561-87c7-8f8b0745bb1e.jpeg" class="profile-img">
     <h1>PROTOCOLO GOAT</h1>
+    <p style="color: #555; font-size: 10px; letter-spacing: 2px;">THE GREATEST OF ALL TIME // AI STRATEGY 2026</p>
+    
     <div class="video-wrapper">
         <div class="video-container">
           <iframe id="player" src="https://www.youtube.com/embed/MkY7ajtJp0U?autoplay=1&mute=1&controls=0&rel=0&enablejsapi=1" frameborder="0"></iframe>
@@ -75,21 +106,39 @@
   </div>
 
   <div class="section" style="padding-top: 0;">
-    <div class="urgency-box">⚠️ ATENÇÃO: RESTAM APENAS <span id="vagas">12</span> LICENÇAS DISPONÍVEIS</div>
-    
     <div class="ebook-vitrine">
-        <div class="ebook-item"><span style="font-size:30px">🛡️</span><div class="ebook-title">Cérebro I.A</div></div>
-        <div class="ebook-item"><span style="font-size:30px">📈</span><div class="ebook-title">Escala 10X</div></div>
+        <div class="ebook-item">
+            <span class="ebook-icon">🤖</span>
+            <div class="ebook-title">Cérebro Autônomo</div>
+            <div class="ebook-desc">Configure seu assistente para vender 24h/dia sem sua supervisão.</div>
+        </div>
+        <div class="ebook-item">
+            <span class="ebook-icon">💎</span>
+            <div class="ebook-title">Algoritmo de Elite</div>
+            <div class="ebook-desc">O blueprint para forçar o Reels a entregar seu perfil para compradores.</div>
+        </div>
+        <div class="ebook-item">
+            <span class="ebook-icon">🔑</span>
+            <div class="ebook-title">Persuasão Oculta</div>
+            <div class="ebook-desc">Scripts de direct testados que convertem curiosos em clientes.</div>
+        </div>
+        <div class="ebook-item">
+            <span class="ebook-icon">⚡</span>
+            <div class="ebook-title">Manual de Escala</div>
+            <div class="ebook-desc">O passo a passo matemático para sair do zero aos primeiros R$ 10k.</div>
+        </div>
     </div>
 
     <div class="price-card">
+        <div style="font-size: 10px; color: #ff4444; font-weight: bold; margin-bottom: 15px; letter-spacing: 2px;">⚠️ OFERTA VÁLIDA PARA O SEU IP ATUAL</div>
         <div class="value">R$ 47,90</div>
-        <button class="btn" onclick="triggerCheckout()">Ativar o Protocolo Agora</button>
+        <div style="color: var(--accent); font-size: 12px; margin-bottom: 25px; font-weight: bold;">OU 6X DE R$ 8,99</div>
+        <button class="btn" onclick="startRedirect()">ATIVAR ACESSO IMEDIATO</button>
     </div>
   </div>
 
-  <div id="payment-sync">
-      <div class="sync-text" id="status-msg">INICIANDO_CONEXÃO_SEGURA...</div>
+  <div id="sync-overlay">
+      <div id="sync-msg" style="font-family: monospace; font-size: 10px; color: var(--accent); letter-spacing: 2px;">AUTENTICANDO_CREDENCIAIS...</div>
       <div class="sync-bar"><div class="sync-fill" id="fill"></div></div>
   </div>
 
@@ -101,38 +150,34 @@
         document.getElementById('unmute-float').style.display = 'none';
     }
 
-    // SCRIPT DE ESCASSEZ REALISTA
-    let vagas = 12;
-    setInterval(() => {
-        if (vagas > 3) {
-            vagas--;
-            document.getElementById('vagas').innerText = vagas;
-        }
-    }, 45000); // Diminui uma vaga a cada 45 segundos
+    const names = ["guilherme_v", "Ana_Clara.ia", "goat_expert", "Bruno_Digital", "pedro_ia"];
+    function showSales() {
+        const pop = document.getElementById('sales-pop');
+        document.getElementById('pop-name').innerText = names[Math.floor(Math.random() * names.length)];
+        pop.style.transform = "translateX(0)";
+        setTimeout(() => { pop.style.transform = "translateX(-280%)"; }, 4000);
+    }
+    setInterval(showSales, 12000);
 
-    function triggerCheckout() {
-        const overlay = document.getElementById('payment-sync');
+    function startRedirect() {
+        const overlay = document.getElementById('sync-overlay');
         const fill = document.getElementById('fill');
-        const msg = document.getElementById('status-msg');
-        const logs = ["CRIPTOGRAFANDO_DADOS...", "SINC_HOTMART_GATEWAY...", "REDIRECIONANDO_..."];
-        
+        const msg = document.getElementById('sync-msg');
         overlay.style.display = 'flex';
         let width = 0;
-        let logIndex = 0;
-
+        const steps = ["VINCULANDO_PROTOCOLO...", "ESTABELECENDO_CONEXÃO_SEGURA...", "ABRINDO_CHECKOUT..."];
+        
         const interval = setInterval(() => {
             if (width >= 100) {
                 clearInterval(interval);
                 window.location.href = "https://pay.hotmart.com/L103950840Q?off=55x6x7d1";
             } else {
-                width += 2;
+                width += 4;
                 fill.style.width = width + '%';
-                if (width % 34 === 0) {
-                    msg.innerText = logs[logIndex];
-                    logIndex++;
-                }
+                if(width > 40) msg.innerText = steps[1];
+                if(width > 80) msg.innerText = steps[2];
             }
-        }, 40);
+        }, 60);
     }
   </script>
 </body>
